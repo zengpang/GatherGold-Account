@@ -1,0 +1,9 @@
+@import "./assets/stylesheets/reset.scss";
+@import "./assets/stylesheets/vars.scss";
+body{
+    background-color:var(--welcome-card-bg);
+    font-family: var(--kingsoft-font);
+    height: 100vh;
+    width: 100vw;
+    margin: 0px;
+}

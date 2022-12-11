@@ -1,0 +1,23 @@
+.wrapper {
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+   >main{
+    
+     height: 79%;
+     
+   }
+   >footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 21%;
+    color: var(--hint-font-color);
+    transition: all var(--animTime);
+   }
+}

@@ -1,0 +1,18 @@
+//全局变量
+:root{
+    --welcome-card-bg: white;
+    --welcome-text: rgba(0, 0, 0, 1);
+    --welcome-btn-color1:rgba(255, 97, 97, 1)
+    --welcome-btn-color2:rgba(255, 130, 130, 1)
+    --welcome-btn-text: white;
+    --kingsoft-font:"KingsoftCloud";
+    --hint-font-color:#808080;
+    --normal-font-color:white;
+    --normal-font-size:16px;
+    --big-font-size:24px;
+    --animTime: .3s;
+}
+@font-face{
+    font-family: 'KingsoftCloud';
+    src:url('../../../public/fonts/KingsoftCloudFont.ttf');
+}
