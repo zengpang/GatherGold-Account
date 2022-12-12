@@ -12,6 +12,7 @@ interface Options{
    beforeEnd?: (e: TouchEvent) => void
    afterEnd?: (e: TouchEvent) => void
 }
+
 export const useSwipe=(element:Ref<HTMLElement|undefined>,options?:Options)=>{
     console.log("执行");
     //起始点击位置
@@ -47,8 +48,21 @@ export const useSwipe=(element:Ref<HTMLElement|undefined>,options?:Options)=>{
           return y>0?'down':'up';
         }
     });
+    //触碰白名单
+    const excludeTouch=(event:TouchEvent)=>{
+        const path = (event.composedPath && event.composedPath());
+    
+        if((path[0] as HTMLElement).innerHTML=="下 一 页")
+        {
+          return true;
+        }
+       
+        return false;
+    };
     //初始点击事件绑定函数
     const onStart=(e:TouchEvent)=>{
+       
+       if(excludeTouch(e)){return};
        options?.beforeStart?.(e);
        //初次点击更改滑动状态为true
        swiping.value=true;

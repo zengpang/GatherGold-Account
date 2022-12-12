@@ -6,7 +6,6 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 export default defineConfig({
   plugins: [
     vue(),
-  
     vueJsx({
       transformOn:true,
       mergeProps:true
@@ -14,5 +13,7 @@ export default defineConfig({
   ],
   server:{
     host: '0.0.0.0'
-  }
+  },
+  base:'./'
+ 
 })
