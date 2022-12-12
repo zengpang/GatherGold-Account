@@ -2,10 +2,9 @@
 .wrapper {
     display: flex;
     flex-direction: column;
-
     align-items: center;
-    width: 100%;
-    height: 100%;
+     width: 100%;
+     height: 79vh;
 
     >.content {
      
@@ -14,10 +13,11 @@
         align-items: center;
         margin-top: 10px;
         width: 100%;
+        //height:684.14px;
         height: 100%; //684.14px
         >.icon {
             width: 100%;
-            height: 61.5%;
+            height: 49.4vh;
         }
         >h2 {
             display: flex;
@@ -26,11 +26,12 @@
 
         >a {
             margin-top: 1.9%;
+            font-size: var(--normal-font-size);
             color: var(--hint-font-color);
         }
 
         >.nextBtn {
-            margin-top: 6.28%;
+            margin-top: 6.32vh;
             width: 250px;
             height: 60px;
             opacity: 1;

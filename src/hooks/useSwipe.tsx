@@ -13,6 +13,7 @@ interface Options{
    afterEnd?: (e: TouchEvent) => void
 }
 export const useSwipe=(element:Ref<HTMLElement|undefined>,options?:Options)=>{
+    console.log("执行");
     //起始点击位置
     const start=ref<Point>();
     //最终离开位置
@@ -46,29 +47,55 @@ export const useSwipe=(element:Ref<HTMLElement|undefined>,options?:Options)=>{
           return y>0?'down':'up';
         }
     });
-    //初始点击事件
+    //初始点击事件绑定函数
     const onStart=(e:TouchEvent)=>{
        options?.beforeStart?.(e);
+       //初次点击更改滑动状态为true
        swiping.value=true;
-
+       //获取点击位置的XY坐标
+       end.value=start.value={x:e.touches[0].screenX,y:e.touches[0].screenY};
+       options?.afterStart?.(e);
     }
-    //移动事件
+    //移动事件处理绑定函数
     const onMove=(e:TouchEvent)=>{
       options?.beforeMove?.(e);
-      
+      if(!start.value){return};
+      //获取点击位置的XY坐标
+      end.value={x:e.touches[0].screenX,y:e.touches[0].screenY};
+      options?.afterStart?.(e);
     }
-    //移动结束事件
+    //移动结束事件绑定函数
     const onEnd=(e:TouchEvent)=>{
         options?.beforeEnd?.(e);
+        //初次点击更改滑动状态为false
         swiping.value=false;
         options?.afterEnd?.(e);
     }
-    //生命周期onMounted挂载所有事件
+    //生命周期onMounted挂载所有事件绑定函数
     onMounted(()=>{
-  
+    
+       if(!element.value){return}
+       //touchstart事件绑定onStart函数
+       element.value.addEventListener('touchstart',onStart);
+       //touchmove事件绑定onMove函数
+       element.value.addEventListener('touchmove',onMove);
+       //touchend事件绑定onEnd函数
+       element.value.addEventListener('touchend', onEnd); 
     })
     //生命周期onUnmounted卸载所有事件
     onUnmounted(()=>{
-
+        if (!element.value) { return }
+        //卸载touchstart事件上绑定的onStart函数
+        element.value.removeEventListener('touchstart', onStart)
+        //卸载touchmove事件上绑定的onMove函数
+        element.value.removeEventListener('touchmove', onMove)
+        //卸载touchend事件上绑定的onEnd函数
+        element.value.removeEventListener('touchend', onEnd)
     })
+    return {
+        swiping,
+        direction,
+        distance
+    }
+    
 }

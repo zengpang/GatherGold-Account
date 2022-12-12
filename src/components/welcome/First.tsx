@@ -9,6 +9,7 @@ export const First=defineComponent({
         const icon=ref<HTMLElement>();
         useLoad(icon,LoadTypes.loadGif,saveMoney);
         return () => (
+          
             <WelcomeLayout>
               {{
                 icon:()=><div class={s.icon} ref={icon}></div>,
