@@ -29,27 +29,14 @@
             font-size: var(--normal-font-size);
             color: var(--hint-font-color);
         }
-
-        >.nextBtn {
+        .nextBtn {
             margin-top: 6.32vh;
             width: 250px;
             height: 7vh;
             opacity: 1;
             z-index: 10;
-            border-radius: 50px;
-            border: none;
-            font-size: var(--big-font-size);
-            color: var(--normal-font-color);
-            font-family: SimHei;
-            font-weight: bold;
-            text-decoration-line: none;
-            background: linear-gradient(180deg, var(--btn-bgColor-end) 0%, var(--btn-bgColor-start) 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            outline: none;
-            text-decoration:none;
-            cursor: none;
+           
         }
+    
     }
 }

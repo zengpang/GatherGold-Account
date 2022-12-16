@@ -18,7 +18,7 @@ export const useLoad=(element: Ref<HTMLElement | undefined>,loadTypes?:LoadTypes
     });
   };
   onMounted(()=>{
-    console.log("开始加载");
+   
     switch(loadTypes)
     {
       case 1:{

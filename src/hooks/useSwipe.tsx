@@ -52,7 +52,7 @@ export const useSwipe=(element:Ref<HTMLElement|undefined>,options?:Options)=>{
     const excludeTouch=(event:TouchEvent)=>{
         const path = (event.composedPath && event.composedPath());
         //剔除链接元素
-        if((path[0] as HTMLLinkElement).href!=undefined)
+        if((path[1] as HTMLLinkElement).href!=undefined)
         {
           return true;
         }
