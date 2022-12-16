@@ -2,7 +2,7 @@ import {defineComponent,ref} from 'vue';
 import s from './WelcomeLayout.module.scss';
 import {RouterLink} from 'vue-router';
 import { WelcomeLayout } from './WelcomeLayout';
-import chartGif from '../../assets/icons/ChartGif.json'
+import chartGif from '../../assets/icons/GifIcons/ChartGif.json'
 import { GifIcon } from '../../shared/GifIcon';
 import { Button } from '../../shared/Button';
 export const Third=defineComponent({

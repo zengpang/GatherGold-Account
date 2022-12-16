@@ -2,7 +2,7 @@ import {defineComponent,ref} from 'vue';
 import s from './WelcomeLayout.module.scss';
 import {RouterLink} from 'vue-router';
 import { WelcomeLayout } from './WelcomeLayout';
-import cloundGif from '../../assets/icons/CloundGif.json'
+import cloundGif from '../../assets/icons/GifIcons/CloundGif.json'
 import { GifIcon } from '../../shared/GifIcon';
 import { Button } from '../../shared/Button';
 export const Forth = defineComponent({

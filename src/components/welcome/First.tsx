@@ -2,7 +2,7 @@ import {defineComponent,ref} from 'vue';
 import s from './WelcomeLayout.module.scss';
 import {RouterLink} from 'vue-router';
 import { WelcomeLayout } from './WelcomeLayout';
-import saveMoney from '../../assets/icons/SaveMoneyGif.json'
+import saveMoney from '../../assets/icons/GifIcons/SaveMoneyGif.json'
 import { GifIcon } from '../../shared/GifIcon';
 import { Button } from '../../shared/Button';
 export const First=defineComponent({ 

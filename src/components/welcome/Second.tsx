@@ -2,7 +2,7 @@ import {defineComponent,ref} from 'vue';
 import s from './WelcomeLayout.module.scss';
 import {RouterLink} from 'vue-router';
 import { WelcomeLayout } from './WelcomeLayout';
-import timeGif from '../../assets/icons/TimeGif.json'
+import timeGif from '../../assets/icons/GifIcons/TimeGif.json'
 import { GifIcon } from '../../shared/GifIcon';
 import { Button } from '../../shared/Button';
 export const Second = defineComponent({

@@ -32,13 +32,17 @@
          width: 72.4%;
          margin-top: 52px;
       }
-
+     
       .startBtn {
-         width: 61.1%;
-         height: 23.6%;
-         position: absolute;
-         bottom: 7.1%;
-         
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        width: 61.15%;
+        height: 43.7%;
+        bottom: 7.1%; 
+        position: absolute;
+          
       }
    }
 }

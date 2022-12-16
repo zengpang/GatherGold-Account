@@ -5,12 +5,15 @@ import { Second } from "../components/welcome/Second";
 import { Third } from "../components/welcome/Third";
 import { StartPage } from "../views/StartPage";
 import { Welcome } from "../views/Welcome";
+import { MainPage } from "../views/MainPage";
+
 export const routes:RouteRecordRaw[]=[
     {path:'/',redirect:'/welcome'},
     
     {
       path:'/welcome',
       component:Welcome,
+      //子页
       children:[
         {path:'',redirect:'/welcome/1'},
         {path:'1', name: "Welcome1",component:First},
@@ -19,6 +22,10 @@ export const routes:RouteRecordRaw[]=[
         {path:'4', name: "Welcome4",component:Forth},
       ]
     },
-    {path:'/start',component:StartPage}
+    {path:'/start',component:StartPage},
+    {
+      path:'/main',component:MainPage
+      
+    }
    
 ]
