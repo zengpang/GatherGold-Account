@@ -1,0 +1,10 @@
+.button{
+    background: linear-gradient(234.6deg, var(--btn-bgColor-end) 0%, var(--btn-bgColor-start) 100%);
+    border-radius: var(--btn-radius);
+    font-size: var(--big-font-size);
+    color: var(--normal-font-color);
+    font-family: SimHei;
+    height: 50px;
+    border: none;
+    font-weight: bold;
+}

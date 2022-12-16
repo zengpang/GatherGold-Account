@@ -40,6 +40,7 @@
   // top: -7.8%;
   width: 100%;
   height: 79vh;
+ 
   transition: all var(--animTime) ease-out;
   
 }
@@ -47,12 +48,13 @@
 .slide_fade_enter_from {
   // position: fixed;
   transform: translateX(100vw);
-  height: 79%;
- 
+  height: 79vh;
+  filter: opacity(100%);
+  
 }
 .slide_fade_leave_to {
   // position: fixed;
   transform: translateX(-100vw);
-  height: 79%;
-
+  height: 79vh;
+  filter: opacity(0%);
 }

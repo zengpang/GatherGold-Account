@@ -2,8 +2,6 @@
 :root{
     --welcome-card-bg: white;
     --welcome-text: rgba(0, 0, 0, 1);
-    --welcome-btn-color1:rgba(255, 97, 97, 1)
-    --welcome-btn-color2:rgba(255, 130, 130, 1)
     --welcome-btn-text: white;
     --kingsoft-font:"KingsoftCloud";
     --hint-font-color:#808080;
@@ -11,8 +9,14 @@
     --normal-font-size:18px;
     --big-font-size:24px;
     --animTime: .3s;
+    --btn-bgColor-start:rgba(255, 130, 130, 1);
+    --btn-bgColor-end:rgba(255, 97, 97, 1);
+    --page-bgColor-start:rgba(248, 206, 155, 1);
+    --page-bgColor-end:rgba(254, 166, 65, 1);
+    --btn-radius:50px;
+    
 }
 @font-face{
     font-family: 'KingsoftCloud';
-    src:url('../../../public/fonts/KingsoftCloudFont.ttf');
+    src:url('/fonts/KingsoftCloudFont.ttf');
 }

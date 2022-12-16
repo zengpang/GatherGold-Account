@@ -51,8 +51,8 @@ export const useSwipe=(element:Ref<HTMLElement|undefined>,options?:Options)=>{
     //触碰白名单
     const excludeTouch=(event:TouchEvent)=>{
         const path = (event.composedPath && event.composedPath());
-    
-        if((path[0] as HTMLElement).innerHTML=="下 一 页")
+        //剔除链接元素
+        if((path[0] as HTMLLinkElement).href!=undefined)
         {
           return true;
         }
