@@ -7,6 +7,7 @@ const textIcons = {
     'add': s.add,
     'export':s.export
 }
+
 export type TextIconNames='home'|'chart'|'user'|'add'|'export';
 //文本图标
 export const TextIcon = defineComponent({
@@ -14,12 +15,18 @@ export const TextIcon = defineComponent({
       textIconName:{
         type:String as PropType<TextIconNames>,
         default: 'chart'
-      }    
+      },
+      onClick:{
+        type:Function as PropType<(e:MouseEvent)=>void>
+      }  
     },
-    setup:(props)=>{
+    
+    setup:(props,context)=>{
+       
         const iconName=textIcons[props.textIconName];
+         
         return ()=>(
-            <a class={[s.TextIcon,iconName]} >
+            <a class={[s.TextIcon,iconName]} onClick={(props.onClick)} >
             </a>
         )
     }

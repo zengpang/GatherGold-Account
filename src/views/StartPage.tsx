@@ -11,14 +11,14 @@ export const StartPage=defineComponent({
       
       
       return () => (
-        <div class={s.wrapper}>
+        <div class={s.wrapper} >
             <GifIcon class={s.icon} gifJson={StartIcon}></GifIcon>
             <Paster class={s.startContent}>
              {
               {
                 header:()=><a class={s.startText}>聚沙成塔,集腋成裘,
                 集金成富 —— 集金记账</a>,
-                footer: ()=><RouterLink class={s.link}  to="/main"> <Button class={s.startBtn}>开 始 记 账</Button></RouterLink>
+                footer: ()=><RouterLink class={s.link}  to="/main"> <Button class={s.startBtn} >开 始 记 账</Button></RouterLink>
               }
              }
             </Paster>
