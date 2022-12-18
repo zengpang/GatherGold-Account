@@ -5,10 +5,11 @@ const textIcons = {
     'chart': s.chart,
     'user': s.user,
     'add': s.add,
-    'export':s.export
+    'export':s.export,
+    'exit':s.exit
 }
 
-export type TextIconNames='home'|'chart'|'user'|'add'|'export';
+export type TextIconNames='home'|'chart'|'user'|'add'|'export'|'exit';
 //文本图标
 export const TextIcon = defineComponent({
     props:{

@@ -23,6 +23,7 @@ export const TabPageBar = defineComponent({
                     throw new Error('<TabPageBar>只能包含TabPage');
                 }
             }
+
             return <><div class={s.tabPageBar}>
                 {tabs.map(item =>
                     //在点击事件中更新父组件

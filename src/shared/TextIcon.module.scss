@@ -29,4 +29,7 @@
     &.export:before {
         content: "\e602";
     }
+    &.exit:before {
+        content: "\e6b6";
+    }
 }
