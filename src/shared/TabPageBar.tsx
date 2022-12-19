@@ -11,11 +11,13 @@ export const TabPageBar = defineComponent({
         onUpdateSelected: {
             type: Function as PropType<(name: string) => void>,
             required: false,
-        }
+        },
+        
     },
     setup: (props, context) => {
         return () => {
             const tabs = context.slots.default?.();
+          
             if (!tabs) return () => null;
             //检测包含的所有子组件是否都是TabPage
             for (let i = 0; i < tabs.length; i++) {
@@ -23,11 +25,18 @@ export const TabPageBar = defineComponent({
                     throw new Error('<TabPageBar>只能包含TabPage');
                 }
             }
-
+            //按钮初始数量
+            const BtnsDefalut=4;
+            //按钮数量
+            const BtnsNumber=tabs.length;
+            const BtnScale=BtnsDefalut/BtnsNumber;
+            const BtnWidth='width:'+(19.5)*(BtnScale)+"vw";
+            const BtnMarginLeft='margin-left:'+(0.5)*BtnScale+"vw";
+            const BtnNewStyle=BtnWidth+';'+BtnMarginLeft;
             return <><div class={s.tabPageBar}>
                 {tabs.map(item =>
                     //在点击事件中更新父组件
-                    <TabButton class={[s.tabButton,item.props?.name===props.selected?s.selected:'']} onClick={()=>context.emit('update:selected', item.props?.name)}>{item.props?.name}</TabButton>
+                    <TabButton buttonStyle={BtnNewStyle} class={[s.tabButton,item.props?.name===props.selected?s.selected:'']} onClick={()=>context.emit('update:selected', item.props?.name)}>{item.props?.name}</TabButton>
                 )}
             </div>
                 <div class={s.tabPageContainer}>
@@ -44,11 +53,16 @@ export const TabButton = defineComponent({
     props: {
         onClick: {
             type: Function as PropType<(e: MouseEvent) => void>
+        },
+        buttonStyle:{
+            type:String as PropType<string>,
+            defualt:''
         }
     },
+    // "width: 39vw;margin-left: 0.9vw;"
     setup: (props, context) => {
         return () => (
-            <button onClick={(props.onClick)}>
+            <button style={props.buttonStyle} onClick={(props.onClick)}>
                 {context.slots.default?.()}
             </button>
         )
