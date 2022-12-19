@@ -1,6 +1,8 @@
 import { defineComponent, PropType } from "vue";
+import { RouterLink } from "vue-router";
 import { NavBar } from "../shared/NavBar";
 import { TextIcon } from "../shared/TextIcon";
+
 export const MainLayout = defineComponent({
     props: {
         iconShow: {
@@ -14,7 +16,7 @@ export const MainLayout = defineComponent({
                 <NavBar>{
                     {
                         title: () => context.slots.title?.(),
-                        icon: () => props.iconShow ? <TextIcon textIconName={'exit'}></TextIcon> : ""
+                        icon: () => props.iconShow ? <RouterLink to={'/main'} ><TextIcon textIconName={'exit'}></TextIcon></RouterLink> : ""
                     }
                 }</NavBar>
                 {context.slots.default?.()}

@@ -8,15 +8,17 @@
     align-items: center;
     justify-content: center;
     font-family: SimHei;
-    
+    z-index: 10;
     font-weight: bolder;
     >.icon{
       font-size: calc(var(--big-font-size)/1.1) ;
       position: absolute;
       left: 26px;
+     
     }
     >.title{
       font-size: var(--big-font-size);
+     
     }
   
 }
