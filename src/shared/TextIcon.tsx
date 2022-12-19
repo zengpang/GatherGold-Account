@@ -1,5 +1,6 @@
 import s from './TextIcon.module.scss';
 import { defineComponent, mergeProps, PropType } from "vue";
+import { RouterLink } from 'vue-router';
 const textIcons = {
     'home': s.home,
     'chart': s.chart,

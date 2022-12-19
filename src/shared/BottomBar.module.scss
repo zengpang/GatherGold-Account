@@ -18,7 +18,11 @@
 
   .icon {
     color: var(--btn-unSelected-color);
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    -webkit-tap-highlight-color:rgba(0,0,0,0); 
     &.selected {
       color: var(--page-bgColor-end);
     }

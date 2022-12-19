@@ -1,7 +1,7 @@
 import s from './BottomBar.module.scss';
 import { defineComponent,PropType,ref } from "vue";
 import { TextIcon,TextIconNames } from './TextIcon';
-
+import {RouterLink} from 'vue-router';
 // 底部导航栏组件
 export const BottomBar=defineComponent({
     props:{
@@ -13,7 +13,7 @@ export const BottomBar=defineComponent({
     
     setup:(props,context)=>{
       
-        const iconBtns=[{iconName:'home',selected:true},{iconName:'chart',selected:false},{iconName:'add',selected:false},{iconName:'export',selected:false},{iconName:'user',selected:false}];
+        const iconBtns=[{iconName:'home',selected:true,link:'/main'},{iconName:'chart',selected:false,link:''},{iconName:'add',selected:false,link:'/items/create'},{iconName:'export',selected:false,link:''},{iconName:'user',selected:false,link:''}];
      
       
         return ()=>(
@@ -21,7 +21,7 @@ export const BottomBar=defineComponent({
             <div class={s.bottomBar}   >
                 {
                    iconBtns.map(item=>{
-                    return (<TextIcon  class={[s.icon,props.selectName===item.iconName?s.selected:'']}  onClick={()=>context.emit('update:selectName', item.iconName)}  textIconName={item.iconName as TextIconNames} ></TextIcon>)
+                    return ( <RouterLink to={item.link} class={[s.icon,props.selectName===item.iconName?s.selected:'']}><TextIcon    onClick={()=>context.emit('update:selectName', item.iconName)}  textIconName={item.iconName as TextIconNames} ></TextIcon></RouterLink>  )
                    }) 
                 }
                  
