@@ -34,6 +34,7 @@ export const Item = defineComponent({
             <div class={s.header}><div class={s.icon}>{props.tagIcon}</div><a class={s.headTitle}>{props.tagNumber}</a></div>
             <a class={s.content}>{props.tagName}</a>
             <a class={s.footer}>{props.isShowPrice?props.tagPrice:''}</a>
+            
             </div>);
     }
 })

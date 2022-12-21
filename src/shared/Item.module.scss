@@ -6,6 +6,16 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    transition:  all var(--animTime);
+   
+   
+    border-radius: 10px;
+    padding-top: 0.4vh;
+    padding-bottom: 0.4vh;
+    >.seleced{
+      background: rgba(255, 167, 66, 0.3);
+      
+    }
     >.header{
       display: flex;
       flex-direction: row;
@@ -19,7 +29,7 @@
 box-shadow: 0px 8px 12px 0px rgba(255, 97, 97, 0.5);
         border-radius: 50%;
         margin-right: 3.30vw;
-       
+        
        
         display: flex;
         flex-direction: row;

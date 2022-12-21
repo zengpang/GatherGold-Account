@@ -18,16 +18,16 @@ export const MainPage = defineComponent({
                     default:()=>(
                     <div class={s.wrapper}>   
                         <TabPageBar v-model:selected={refPageKind.value}>
-                            <TabPage name='本月'>
+                            <TabPage name='本月' class={s.tabPage} >
                                 本月分页
                             </TabPage>
-                            <TabPage name='上个月'>
+                            <TabPage name='上个月' class={s.tabPage} >
                                 上个月分页
                             </TabPage>
-                            <TabPage name='今年'>
+                            <TabPage name='今年' class={s.tabPage} >
                                 今年分页
                             </TabPage>
-                            <TabPage name='其他'>
+                            <TabPage name='其他' class={s.tabPage} >
                                 其他分页
                             </TabPage>
                         </TabPageBar>
