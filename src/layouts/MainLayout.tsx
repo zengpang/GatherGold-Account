@@ -8,6 +8,10 @@ export const MainLayout = defineComponent({
         iconShow: {
             type: Boolean as PropType<boolean>,
             default: false
+        },
+        iconPath:{
+            type:String as PropType<string>,
+            default: '/main'
         }
     },
     setup: (props, context) => {
@@ -16,7 +20,7 @@ export const MainLayout = defineComponent({
                 <NavBar>{
                     {
                         title: () => context.slots.title?.(),
-                        icon: () => props.iconShow ? <RouterLink to={'/main'} ><TextIcon textIconName={'exit'}></TextIcon></RouterLink> : ""
+                        icon: () => props.iconShow ? <RouterLink to={props.iconPath} ><TextIcon textIconName={'exit'}></TextIcon></RouterLink> : ""
                     }
                 }</NavBar>
                 {context.slots.default?.()}

@@ -1,7 +1,26 @@
-.wrapper{
+.wrapper {
     height: 100vh;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   overflow: hidden
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+
+    .tabPage {
+        position: relative;
+        top: 19.9vh;
+
+        .itemTitle {
+            color: var( --btn-unSelected-color);
+        }
+
+        .itemList {
+            position: relative;
+            width: 90.8vw;
+            overflow-y: auto;
+            height: 65vh;
+           
+            padding-bottom: 2.8vh;
+        }
+    }
+
 }
