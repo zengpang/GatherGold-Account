@@ -76,7 +76,7 @@ export const ItemCreate = defineComponent({
                   <a class={s.itemTitle}>支出标签</a>
              
                   <TagList  Items={refExpensesTags.value} class={s.itemList}></TagList>
-                  {/* <RouterLink to={'/tags/create'}><Button>添加标签</Button></RouterLink> */}
+                  <RouterLink to={'/tags/create'} class={s.addTag} ><Button class={s.addTagBtn}>添 加 标 签</Button></RouterLink>
                 </TabPage>
                 <TabPage name='收入' class={s.tabPage}>
                   <a class={s.itemTitle}>收入标签</a>

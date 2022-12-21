@@ -8,9 +8,11 @@
     .tabPage {
         position: relative;
         top: 19.9vh;
-
+        display: flex;
+        flex-direction: column;
         .itemTitle {
             color: var( --btn-unSelected-color);
+            margin-left: 1.1vh;
         }
 
         .itemList {
@@ -18,9 +20,21 @@
             width: 90.8vw;
             overflow-y: auto;
             height: 64.31vh;
-           
-            padding-bottom: 2.8vh;
+            padding-bottom: 1.93vh;
+            margin-bottom: 1vh;
         }
+        .addTag{
+            align-self: center;
+            .addTagBtn{
+                width: 41.4vw;
+                height: 6.8vh;
+                border-radius: 15px;
+                font-size: var(--mini-font-size);
+                background: linear-gradient(135deg, rgba(255, 97, 97, 1) 0%, rgba(255, 129, 130, 1) 100%);
+                 box-shadow: 0px 8px 12px 0px rgba(255, 97, 97, 0.5);
+            }
+        }
+        
     }
 
 }
