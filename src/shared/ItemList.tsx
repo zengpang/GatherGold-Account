@@ -22,7 +22,7 @@ export const ItemList = defineComponent({
         case "bill": {
           return <div class={s.wrapper}>
             {Items?.map((item, index) => {
-              return (<Item tagIcon='\u{1F471}' tagName='旅行' tagPrice={1234} tagTime={"2000-01-01 12:39"}></Item>)
+              return (<Item tagIcon='\u{1F471}' tagName='旅行' tagPrice={1234} tagTime={"2000-01-01 12:39"} class={s.item}></Item>)
             })}
             <div class={s.footer}>没有更多</div>
           </div>

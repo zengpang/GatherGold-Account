@@ -14,7 +14,6 @@ export const MainPage = defineComponent({
           
             <div class={s.wrapper}>
                   <RouterView class={s.container}>
-
                   </RouterView>
                  <BottomBar v-model:selectName={refKind.value}></BottomBar>
             </div>

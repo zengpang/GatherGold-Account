@@ -30,12 +30,15 @@ export const Item = defineComponent({
                     <span>{props.tagIcon}</span>
                 </div>
                 <div class={s.text}>
-                    <div class={s.tagAndAmount}>
+                    <div class={s.tagAndTime}>
                         <span class={s.tag}>{props.tagName}</span>
-                        <span class={[s.amount,isincome?s.income:'']}>{(isincome?"+￥":"-￥")+props.tagPrice}</span>
+                        <span class={s.time}>
+                           {props.tagTime}
+                         </span>
+                        
                     </div>
-                    <div class={s.time}>
-                        {props.tagTime}
+                    <div class={s.price}>
+                       <span class={[s.amount,isincome?s.income:'']}>{(isincome?"+￥":"-￥")+props.tagPrice}</span>
                     </div>
                 </div>
             </div>

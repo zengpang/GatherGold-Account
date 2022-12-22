@@ -1,6 +1,7 @@
 .item {
     display: flex;
     flex-direction: row;
+    
     .sign {
         flex-grow: 0;
         flex-shrink: 0;
@@ -20,26 +21,30 @@
         margin-left: 4px;
         flex-grow: 1;
         flex-shrink: 1;
-
-        .tagAndAmount {
+        display: flex;
+        justify-content: space-between;
+        .tagAndTime {
             display: flex;
-            justify-content: space-between;
-
+            flex-direction: column;
+            justify-content: center;
             .tag {
                 color: black;
             }
 
+          
+        }
+
+        .price {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             .amount {
                 color: var(--btn-bgColor-end);
+             
                 &.income{
                     color: var(--page-bgColor-end);
                 }
             }
-        }
-
-        .time {
-            color: var(--list-time-text);
-            margin-top: 4px;
         }
     }
 }
