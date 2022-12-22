@@ -1,6 +1,6 @@
 import s from './ItemList.module.scss';
 import { defineComponent, PropType } from 'vue';
-import { Item } from '../../shared/Item';
+
 export const ItemList = defineComponent({
   props: {
     Items: {

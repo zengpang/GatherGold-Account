@@ -1,6 +1,6 @@
 import s from './TagList.module.scss'
 import { defineComponent, PropType } from 'vue';
-import { Item } from '../../shared/Item';
+import { TagItem } from '../../shared/TagItem';
 export const TagList = defineComponent({
   props: {
     Items: {
@@ -13,7 +13,7 @@ export const TagList = defineComponent({
       const Items = props.Items;
       return <div class={s.wrapper}>
         {Items?.map((item,index) => {
-          return (<Item tagIcon={item.sign} tagcategory={item.category}  tagNumber={index+1} tagName={item.name} class={s.item}></Item>)
+          return (<TagItem tagIcon={item.sign} tagNumber={index+1} tagName={item.name} class={s.item}></TagItem>)
         })}
         <div class={s.footer}>没有更多</div>
       </div>
