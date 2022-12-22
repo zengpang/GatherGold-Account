@@ -1,6 +1,6 @@
 import s from './TagList.module.scss'
 import { defineComponent, PropType } from 'vue';
-import { TagItem } from '../../shared/TagItem';
+import { TagItem } from './TagItem';
 export const TagList = defineComponent({
   props: {
     Items: {

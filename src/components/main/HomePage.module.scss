@@ -1,3 +1,19 @@
 .homePage{
-    
+    height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+
+        
+        .tabPage {
+            position: absolute;
+            top: 19.9vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
+           }
+   
+   
 }

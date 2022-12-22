@@ -5,7 +5,7 @@ import { TabPageBar, TabPage } from '../../shared/TabPageBar';
 
 import { Button } from '../../shared/Button';
 import {RouterLink} from 'vue-router';
-import { TagList } from '../tag/TagList';
+import { TagList } from '../../shared/TagList';
 
 
 export const ItemCreate = defineComponent({
