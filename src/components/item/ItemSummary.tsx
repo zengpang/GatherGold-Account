@@ -1,19 +1,20 @@
 import s from './ItemSummary.module.scss';
 import { defineComponent, PropType } from 'vue';
+import { Paster } from '../../shared/Paster';
 export const ItemSummary=defineComponent({
     props: {
         startDate: {
           type: String as PropType<string>,
-          required: true
+          required: false
         },
         endDate: {
           type: String as PropType<string>,
-          required: true
+          required: false
         }
       },
     setup:(props,context)=>{
         return ()=>(
-            <div>汇总</div>
+            <div><Paster></Paster></div>
         )
     }
 })

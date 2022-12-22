@@ -4,7 +4,7 @@ import { MainLayout } from '../layouts/MainLayout'
 import { BottomBar } from '../shared/BottomBar'
 import { TabPageBar, TabPage } from '../shared/TabPageBar'
 import s from './MainPage.module.scss'
-
+import { ItemSummary } from '../components/item/ItemSummary'
 export const MainPage = defineComponent({
     setup: (props, context) => {
         const refKind = ref('home');
@@ -19,7 +19,7 @@ export const MainPage = defineComponent({
                     <div class={s.wrapper}>   
                         <TabPageBar v-model:selected={refPageKind.value}>
                             <TabPage name='本月' class={s.tabPage} >
-                                本月分页
+                                <ItemSummary></ItemSummary>
                             </TabPage>
                             <TabPage name='上个月' class={s.tabPage} >
                                 上个月分页
