@@ -9,8 +9,20 @@
             border-radius: 15px;
             background: linear-gradient(135deg, rgba(248, 206, 155, 1) 0%, rgba(254, 166, 65, 1) 100%);
             margin-right: 5px;
+            color: white;
+        
+            font-size: var(--bigger-font-size);
+            box-shadow: -2px 4px 10px 0px rgba(255, 141, 26, 0.5);
+            .sumTitle{
+                display: flex;
+                height: 100%;
+                align-items: flex-end;
+               
+             
+            }
+           
         }
-
+         
         .incomeAndexpense {
             display: flex;
             flex-direction: column;
@@ -21,15 +33,30 @@
                 height: 11.97vh;
                 border-radius: 15px;
                 background: linear-gradient(180deg, rgba(255, 130, 130, 1) 0%, rgba(255, 97, 97, 1) 100%);
-                margin-bottom: 5px;
+                margin-bottom: 7px;
+                color: white;
+                font-size:var(--normal-font-size);
+                box-shadow: 2px -4px 10px 0px rgba(255, 97, 97, 0.5);
+                .incomeTitle{
+                    display: flex;
+                    height: 100%;
+                    align-items: flex-end;
+                }
             }
 
             .expense {
                 width: 44.2vw;
                 height: 11.97vh;
                 border-radius: 15px;
-                border-radius: 15px;
+                color: white;
+                font-size:var(--normal-font-size);
                 background: linear-gradient(180deg, rgba(132, 226, 252, 1) 0%, rgba(74, 201, 236, 1) 100%);
+                box-shadow: 2px 4px 10px 0px rgba(74, 201, 236, 0.5);
+                .expenseTitle{
+                    display: flex;
+                    height: 100%;
+                    align-items: flex-end;
+                }
             }
         }
     }
