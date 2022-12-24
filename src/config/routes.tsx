@@ -13,6 +13,8 @@ import { TagPage } from "../views/TagPage";
 import { TagCreate } from "../components/tag/TagCreate";
 import { TagEdit } from "../components/tag/TagEdit";
 import { HomePage } from "../components/main/HomePage";
+import { StatisticsPage } from "../components/main/StatisticsPage";
+
 export const routes: RouteRecordRaw[] = [
   { path: '/', redirect: '/welcome' },
 
@@ -33,7 +35,8 @@ export const routes: RouteRecordRaw[] = [
     path: '/main', component: MainPage,
     children:[
       { path: '/main', redirect: '/main/home' },
-      {path:'home',name:"HomePage",component:HomePage}
+      {path:'home',name:"HomePage",component:HomePage},
+      {path:'statistics',name:"StatisticsPage",component:StatisticsPage}
     ]
 
   },
