@@ -3,7 +3,7 @@ import { emojiList } from './emojiList';
 import s from './EmojiSelect.module.scss';
 export const EmojiSelect = defineComponent({
     props: {
-        modeValue: {
+        modelValue: {
             type: String
         },
         onUpdateModelValue: {
@@ -49,7 +49,7 @@ export const EmojiSelect = defineComponent({
            const selectedItem=table[refSelected.value][1];
            return selectedItem.map(category =>emojiList
             .find(item=>item[0]===category)?.[1]
-            .map(item=><li class={item===props.modeValue?s.selectedEmoji : ''}
+            .map(item=><li class={item===props.modelValue?s.selectedEmoji : ''}
                onClick={()=>onClickEmoji(item)}>{item}</li>))  
         })
         return ()=>{

@@ -14,6 +14,7 @@ export const TabPageBar = defineComponent({
         },
         
     },
+    emits: ['update:selected'],
     setup: (props, context) => {
         return () => {
             const tabs = context.slots.default?.();
