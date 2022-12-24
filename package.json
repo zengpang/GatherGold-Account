@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "babel-plugin-import": "^1.13.5",
     "lottie-web": "^5.10.0",
     "sass": "^1.49.11",
     "vant": "^3.4.8",

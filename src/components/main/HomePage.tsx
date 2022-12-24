@@ -5,7 +5,8 @@ import { TabPageBar, TabPage } from '../../shared/TabPageBar';
 import { MainLayout } from '../../layouts/MainLayout';
 import { Time } from '../../shared/time';
 import { Overlay } from 'vant';
-import { Value } from 'sass';
+import { Form, FormItem } from '../../shared/Form';
+import 'vant/lib/index.css';
 export const HomePage = defineComponent({
     setup: (props, context) => {
         //测试数组无实际含义
@@ -20,7 +21,7 @@ export const HomePage = defineComponent({
         ]);
         const refPageKind = ref('本月');
         const time = new Time();
-        const customTile = reactive({
+        const customTime = reactive({
             start: new Time().format(),
             end: new Time().format()
         });
@@ -39,7 +40,7 @@ export const HomePage = defineComponent({
             }
         ]
         const refOverlayVisible = ref(false);
-        const onSubmitCustom = (e: Event) => {
+        const onSubmitCustomTime = (e: Event) => {
             e.preventDefault();
             refOverlayVisible.value = false;
         }
@@ -54,6 +55,7 @@ export const HomePage = defineComponent({
                     {
                         title: () => '首页',
                         default: () => (
+                            
                             <div class={s.homePage}>
                                 <TabPageBar v-model:selected={refPageKind.value} onUpdate:selected={onSelect}>
                                     <TabPage name='本月' class={s.tabPage} >
@@ -77,7 +79,16 @@ export const HomePage = defineComponent({
                                             请选择时间
                                         </header>
                                         <main>
-                                           
+                                            <Form onSubmit={onSubmitCustomTime}>
+                                                <FormItem label='开始时间' v-model={customTime.start} type='date' />
+                                                <FormItem label='结束时间' v-model={customTime.end} type='date' />
+                                                <FormItem>
+                                                    <div class={s.actions}>
+                                                        <button type="button" onClick={() => refOverlayVisible.value = false}>取消</button>
+                                                        <button type="submit">确认</button>
+                                                    </div>
+                                                </FormItem>
+                                            </Form>
                                         </main>
                                     </div>
                                 </Overlay>

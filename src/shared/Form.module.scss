@@ -8,27 +8,27 @@
     display: block;
   }
   .formItem {
-    min-height: var(--input-min-height);
+    min-height: 48px;
     max-width: 100%;
     &.button {
       width: 100%;
     }
     &.input {
       flex-grow: 1;
-      border: 1px solid var(--input-border-color);
-      border-radius: var(--input-radius);
+      border: 1px solid #5c33be;
+      border-radius: 15px;
       font-size: 18px;
       font-family: inherit;
       padding-left: 16px;
       padding-right: 16px;
-      box-shadow: inset 0 0 3px var(--input-shadow);
+      box-shadow: inset 0 0 3px rgba(0,0,0,0.25);
       &.error {
-        border-color: var(--error-color);
+        border-color: red;
       }
     }
     &.select{
-      border: 1px solid var(--input-border-color);
-      border-radius: var(--input-radius);
+      border: 1px solid #5c33be;
+      border-radius: 15px;
       padding: 0 8px;
     }
     &.validationCodeInput {
@@ -50,7 +50,7 @@
     }
     &_errorHint {
       margin-top: 4px;
-      color: var(--error-color);
+      color: red;
       font-size: 12px;
     }
   }

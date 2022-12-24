@@ -4,7 +4,7 @@ import { computed, defineComponent, PropType, ref, VNode } from 'vue';
 import { Button } from './Button';
 import { EmojiSelect } from './EmojiSelect';
 import { Time } from './time';
-
+import 'vant/lib/index.css';
 export const Form = defineComponent({
     props: {
         onSubmit: {
@@ -73,13 +73,11 @@ export const FormItem = defineComponent({
                         <Popup position='bottom' v-model:show={refDateVisible.value}>
                             <DatetimePicker value={props.modelValue} type="date" title="选择年月日"
                                 onConfirm={(date: Date) => {
-                                    context.emit('update:modelValue', new Time(date).format)
+                                    context.emit('update:modelValue', new Time(date).format())
                                     refDateVisible.value = false
                                 }}
-                                onCancel={() => refDateVisible.value = false}
-                            />
-                        </Popup>
-                    </>
+                                onCancel={() => refDateVisible.value = false} />
+                        </Popup></>
                 case undefined:
                     return context.slots.default?.()
             }
