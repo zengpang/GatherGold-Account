@@ -2,6 +2,8 @@ import s from './Tag.module.scss';
 import { defineComponent, PropType, reactive } from 'vue';
 import { MainLayout } from '../../layouts/MainLayout';
 import { Rules, validate } from '../../shared/validate';
+import { TagForm } from './TagForm';
+
 export const TagCreate =defineComponent({
    props:{
      name:{
@@ -31,9 +33,7 @@ export const TagCreate =defineComponent({
         <MainLayout iconShow={true} iconPath={'/items/create'}>
           {{
               title: () => '标签创建',
-              default:()=><div>
-                标签创建页面
-              </div>
+              default:()=>(<TagForm />)
           }}
         </MainLayout>
       )
