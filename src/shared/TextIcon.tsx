@@ -7,10 +7,11 @@ const textIcons = {
     'user': s.user,
     'add': s.add,
     'export':s.export,
-    'exit':s.exit
+    'exit':s.exit,
+    'date':s.date
 }
 
-export type TextIconNames='home'|'chart'|'user'|'add'|'export'|'exit';
+export type TextIconNames='home'|'chart'|'user'|'add'|'export'|'exit'|'date';
 //文本图标
 export const TextIcon = defineComponent({
     props:{

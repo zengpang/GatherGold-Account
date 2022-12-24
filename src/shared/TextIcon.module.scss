@@ -32,4 +32,7 @@
     &.exit:before {
         content: "\e6b6";
     }
+    &.date::before{
+        content: "\e600";
+    }
 }
