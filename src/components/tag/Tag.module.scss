@@ -1,0 +1,16 @@
+.tips{
+    text-align: center;
+    padding: 16px 0;
+  }
+  
+  .actions{
+    padding: 0 16px 16px 16px;
+    display: flex;
+    justify-content: space-between;
+    .removeTags, .removeTagsAndItems{
+      width: calc(50% - 8px);
+    }
+  }
+  .button{
+    width: 100%;
+  }
