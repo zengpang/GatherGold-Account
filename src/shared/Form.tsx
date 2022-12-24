@@ -61,8 +61,13 @@ export const FormItem = defineComponent({
                         </Button>
                     </>
                 case 'select':
-                    return <select class={[s.formItem, s.select]} value={props.modelValue}>
-
+                    return <select class={[s.formItem, s.select]} value={props.modelValue}
+                     onChange={(e:any)=>{context.emit('update:modelValue',e.target.value)}}
+                   
+                    >
+                      {props.options?.map(option =>
+                        <option value={option.value}>{option.text}</option>
+                      )}
                     </select>
                 case 'date':
                     return <>

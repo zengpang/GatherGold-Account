@@ -1,5 +1,5 @@
 import s from './TagCreate.module.scss';
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, PropType, reactive } from 'vue';
 import { MainLayout } from '../../layouts/MainLayout';
 export const TagCreate =defineComponent({
    props:{
@@ -8,6 +8,16 @@ export const TagCreate =defineComponent({
      }
    },
    setup:(props,context)=>{
+      const formData=reactive({
+        name:'',
+        sign:'',
+      })
+      const errors=reactive<{[k in keyof typeof formData]?:string[]}>({})
+      const onSubmit=(e:Event)=>{
+        const rules:Rules<typeof formData>=[
+          
+        ]
+      }
       return ()=>(
         <MainLayout iconShow={true} iconPath={'/items/create'}>
           {{

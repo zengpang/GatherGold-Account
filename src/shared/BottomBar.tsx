@@ -13,7 +13,7 @@ export const BottomBar=defineComponent({
     
     setup:(props,context)=>{
       
-        const iconBtns=[{iconName:'home',selected:true,link:'/main'},{iconName:'chart',selected:false,link:'/statistics'},{iconName:'add',selected:false,link:'/items/create'},{iconName:'export',selected:false,link:''},{iconName:'user',selected:false,link:''}];
+        const iconBtns=[{iconName:'home',selected:true,link:'/main'},{iconName:'chart',selected:false,link:'/main/statistics'},{iconName:'add',selected:false,link:'/items/create'},{iconName:'export',selected:false,link:''},{iconName:'user',selected:false,link:''}];
      
       
         return ()=>(
