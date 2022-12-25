@@ -5,6 +5,7 @@ import { Button } from './Button';
 import { EmojiSelect } from './EmojiSelect';
 import { Time } from './time';
 import 'vant/lib/index.css';
+import { time } from 'echarts';
 export const Form = defineComponent({
     props: {
         onSubmit: {
@@ -38,12 +39,32 @@ export const FormItem = defineComponent({
             type: String
         },
         placeholder: String,
-        options: Array as PropType<Array<{ value: string, text: string }>>
-
+        options: Array as PropType<Array<{ value: string, text: string }>>,
+        onClick:Function as PropType<()=>void>,
+        countFrom:{
+            type:Number,
+            default:60
+        }
+        
     },
     emits: ['update:modelValue'],
     setup: (props, context) => {
         const refDateVisible = ref(false);
+        const timer=ref<number>();
+        const count=ref<number>(props.countFrom);
+        const isCounting=computed(()=>!!timer.value);
+        const startCount=()=>{
+            timer.value=setInterval(()=>{
+                count.value-=1;
+                if(count.value===0)
+                {
+                    clearInterval(timer.value);
+                    timer.value=undefined;
+                    count.value=props.countFrom;
+                }
+            },1000);
+        }
+        context.expose({startCount});
         const content = computed(() => {
             switch (props.type) {
                 case 'text':
@@ -60,7 +81,7 @@ export const FormItem = defineComponent({
                     return <>
                         <input class={[s.formItem, s.input, s.validationCodeInput]}
                             placeholder={props.placeholder} />
-                        <Button class={[s.formItem, s.button, s.validationCodeButton]}>
+                        <Button  class={[s.formItem, s.button, s.validationCodeButton]}>
                             发送验证码
                         </Button>
                     </>

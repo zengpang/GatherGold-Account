@@ -1,11 +1,12 @@
 import s from './LoginPage.module.scss';
-import { defineComponent, PropType, reactive } from 'vue';
+import { defineComponent, PropType, reactive,ref } from 'vue';
 import { Form, FormItem } from '../../shared/Form';
 import { validate } from '../../shared/validate';
 import { Button } from '../../shared/Button';
 import { MainLayout } from '../../layouts/MainLayout';
 import { GifIcon } from '../../shared/GifIcon';
-import LoadGif from '../../assets/icons/GifIcons/LoginGif.json'
+import LoadGif from '../../assets/icons/GifIcons/LoginGif.json';
+import axios from 'axios';
 export const LoginPage = defineComponent({
     setup: (props, context) => {
         const formData = reactive({
@@ -16,6 +17,7 @@ export const LoginPage = defineComponent({
             email: [],
             code: []
         })
+        const refValidationCode = ref<any>();
         const onSubmit = (e: Event) => {
             e.preventDefault();
             Object.assign(errors, {
@@ -26,6 +28,14 @@ export const LoginPage = defineComponent({
                 { key: 'email', type: 'pattern', regex: /.+@.+/, message: '必须是邮箱地址' },
                 { key: 'code', type: 'required', message: '必填' },
             ]))
+        }
+        const onClickSendValidationCode=async()=>{
+            const response=await axios.post('/api/v1/validation_codes',{email:formData.email})
+            .catch(()=>{
+                //失败
+            })
+            //成功
+            refValidationCode.value.startCount();
         }
         return () => (
             <MainLayout iconShow={false}>{
@@ -44,6 +54,8 @@ export const LoginPage = defineComponent({
                         v-model={formData.email} error={errors.email?.[0]} />
                       <FormItem label="验证码" type="validationCode"
                         placeholder='请输入六位数字'
+                        countFrom={60}
+                        onClick={onClickSendValidationCode}
                         v-model={formData.code} error={errors.code?.[0]}  />
                       <FormItem style={{ paddingTop: '2.15vh' }}>
                         <Button class={s.loginBtn}>登 录</Button>
