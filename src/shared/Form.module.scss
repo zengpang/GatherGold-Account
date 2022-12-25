@@ -19,6 +19,7 @@
     }
     &.input {
       flex-grow: 1;
+     
       border: 1px solid var(--btn-unSelected-color);
       border-radius: var(--border-radius);
       font-size: 18px;
@@ -52,7 +53,7 @@
     &_value {
       display: flex;
       margin-top: 4px;
-     
+      
       > * {
         flex-grow: 1;
       }

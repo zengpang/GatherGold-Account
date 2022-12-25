@@ -106,17 +106,17 @@ export const TimeTabsLayout = defineComponent({
                                 </TabPageBar>
                                 <Overlay show={refOverlayVisible.value} class={s.overlay}>
                                     <div class={s.overlay_inner}>
-                                        <header>
+                                        <header >
                                             请选择时间
                                         </header>
                                         <main>
                                             <Form onSubmit={onSubmitCustomTime}>
-                                                <FormItem label='开始时间' v-model={customTime.start} type='date' />
+                                                <FormItem label='开始时间' v-model={customTime.start} type='date'  />
                                                 <FormItem label='结束时间' v-model={customTime.end} type='date' />
                                                 <FormItem>
                                                     <div class={s.actions}>
-                                                        <button type="button" onClick={() => refOverlayVisible.value = false}>取消</button>
-                                                        <button type="submit">确认</button>
+                                                        <button type="button" onClick={() => refOverlayVisible.value = false} class={s.cancelBtn}>取消</button>
+                                                        <button type="submit" onClick={() => refOverlayVisible.value = false} class={s.confirmBtn}>确认</button>
                                                     </div>
                                                 </FormItem>
                                             </Form>
