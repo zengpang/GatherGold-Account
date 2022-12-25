@@ -24,6 +24,10 @@ export const FormItem = defineComponent({
         label: {
             type: String
         },
+        labelinterval:{
+           type:String,
+           default:'4px'
+        },
         modelValue: {
             type: [String, Number]
         },
@@ -89,12 +93,12 @@ export const FormItem = defineComponent({
         })
         return () => {
             return <div class={s.formRow}>
-                <label class={s.formLabel}>
+                <label class={s.formLabel} >
                     {
                         props.label &&
                         <span class={s.formItem_name}>{props.label}</span>
                     }
-                    <div class={s.formItem_value}>
+                    <div class={s.formItem_value} style={"margin-top:"+props.labelinterval}>
                         {content.value}
                     </div>
                     <div class={s.formItem_errorHint}>

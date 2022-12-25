@@ -30,19 +30,23 @@ export const TagForm=defineComponent({
        e.preventDefault();
      }
      return ()=>(
-        <Form onSubmit={onSubmit}>
+        <Form onSubmit={onSubmit} >
            <FormItem label='标签名'
               type="text"
               v-model={formData.name}
-              error={errors['name']?.[0]}/>
-            <FormItem label={'符号'+formData.sign}
-              type="emojiSelect"
-              v-model={formData.sign}
-              error={errors['sign']?.[0]}/>
-            <FormItem>
-                <p class={s.tips}></p>
-            </FormItem>
-            <FormItem>
+              error={errors['name']?.[0]}
+              class={s.tagTitle}
+              />
+           <FormItem label={'符号 ' + formData.sign}
+          type="emojiSelect" v-model={formData.sign}
+          error={errors['sign']?.[0]}
+          class={s.tagSelect} 
+          />
+          <FormItem>
+          <p class={s.tips}>长按标签进行编辑</p> 
+          </FormItem>
+         
+            <FormItem class={s.buttondiv}>
                 <Button class={[s.button]}>确定</Button>
             </FormItem>
         </Form>

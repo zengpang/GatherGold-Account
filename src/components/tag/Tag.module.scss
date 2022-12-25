@@ -1,6 +1,14 @@
+.tagForm
+{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  margin-top: 12.08vh;
+  
+
 .tips{
     text-align: center;
-    padding: 16px 0;
+    margin: 0;
   }
   
   .actions{
@@ -11,6 +19,19 @@
       width: calc(50% - 8px);
     }
   }
-  .button{
-    width: 100%;
+  .buttondiv{
+    width: 41.4vw;
+    height: 6.8vh;
+    align-self: center;
+    .button{
+      
+      
+      border-radius: 15px;
+      font-size: var(--mini-font-size);
+      background: linear-gradient(135deg, var(--btn-bgColor-end) 0%, var(--btn-bgColor-start) 100%);
+       box-shadow: 0px 8px 12px 0px rgba(255, 97, 97, 0.5);
+    
+    }
   }
+  
+}

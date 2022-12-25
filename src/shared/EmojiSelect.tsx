@@ -52,17 +52,17 @@ export const EmojiSelect = defineComponent({
             .map(item=><li class={item===props.modelValue?s.selectedEmoji : ''}
                onClick={()=>onClickEmoji(item)}>{item}</li>))  
         })
-        return ()=>{
+        return () => (
             <div class={s.emojiList}>
-            <nav>
-              {table.map((item, index) =>
-                <span class={index === refSelected.value ? s.selected : ''}
-                  onClick={() => onClickTab(index)}>{item[0]}</span>)}
-            </nav>
-            <ol>
-              {emojis.value}
-            </ol>
-          </div>
-        }
+              <nav>
+                {table.map((item, index) =>
+                  <span class={index === refSelected.value ? s.selected : ''}
+                    onClick={() => onClickTab(index)}>{item[0]}</span>)}
+              </nav>
+              <ol>
+                {emojis.value}
+              </ol>
+            </div>
+          )
     }
 })
