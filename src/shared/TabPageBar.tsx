@@ -80,7 +80,7 @@ export const TabPage = defineComponent({
     setup: (props, context) => {
         console.log(props.name);
         return () => (
-            <div >
+            <div style={"  overflow: auto;"}>
                 {context.slots.default?.()}
             </div>
         )
