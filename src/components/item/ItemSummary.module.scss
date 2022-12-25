@@ -12,7 +12,7 @@
             color: white;
         
             font-size: var(--bigger-font-size);
-            box-shadow: -2px 4px 10px 0px rgba(255, 141, 26, 0.5);
+            
             .sumTitle{
                 display: flex;
                 height: 100%;
@@ -34,7 +34,7 @@
                 margin-bottom: 7px;
                 color: white;
                 font-size:var(--normal-font-size);
-                box-shadow: 2px -4px 10px 0px rgba(255, 97, 97, 0.5);
+             
                 .incomeTitle{
                     display: flex;
                     height: 100%;
@@ -49,7 +49,7 @@
                 color: white;
                 font-size:var(--normal-font-size);
                 background: linear-gradient(180deg, rgba(132, 226, 252, 1) 0%, rgba(74, 201, 236, 1) 100%);
-                box-shadow: 2px 4px 10px 0px rgba(74, 201, 236, 0.5);
+         
                 .expenseTitle{
                     display: flex;
                     height: 100%;

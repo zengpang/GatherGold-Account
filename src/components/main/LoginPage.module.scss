@@ -1,0 +1,29 @@
+.wrapper{
+  margin-top: 5.98vh;
+
+.logo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 42px 0 0;
+  .icon{
+    width: 230px;
+    height: 230px;
+  }
+  .appName{
+    color: black;  
+    font-weight: bold;
+    font-size: 21px;
+    margin-top: 2.46vh;
+  }
+ 
+}
+.loginBtn{
+    width:90.58vw ; 
+    height: 5.868vh;
+    border-radius: 5px;
+    font-size: 14px;
+    background: linear-gradient(135deg, rgba(255, 97, 97, 1) 0%, rgba(255, 129, 130, 1) 100%);
+   }
+}
