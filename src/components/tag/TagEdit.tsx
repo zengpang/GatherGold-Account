@@ -1,7 +1,7 @@
 import { defineComponent, reactive, resolveComponent } from 'vue';
 import { MainLayout } from '../../layouts/MainLayout';
 import { Button } from '../../shared/Button';
-import { EmojiSelect } from '../../shared/EmojiSelect';
+
 
 import { Rules, validate } from '../../shared/validate';
 import s from './Tag.module.scss';
@@ -29,14 +29,14 @@ export const TagEdit=defineComponent({
         }
         return () => (
             <MainLayout iconShow={true}>{{
-              title: () => '新建标签',
+              title: () => '标签修改',
               
               default: () => <>
-                <TagForm />
-                <div class={s.actions}>
-                  <Button  class={s.removeTags} onClick={() => { }}>删除标签</Button>
+                <TagForm class={s.tagForm} isShowDeBtn={true}/>
+                {/* <div class={s.actions}>
+                 
                   <Button  class={s.removeTagsAndItems} onClick={() => { }}>删除标签和记账</Button>
-                </div>
+                </div> */}
               </>
             }}</MainLayout>
           )

@@ -3,11 +3,17 @@ import { Button } from '../../shared/Button';
 import { EmojiSelect } from '../../shared/EmojiSelect';
 import {Form, FormItem } from '../../shared/Form';
 import { Rules,validate } from '../../shared/validate';
+import { useRoute, useRouter } from 'vue-router'
+import { Dialog } from 'vant'
 import s from './Tag.module.scss';
 export const TagForm=defineComponent({
    props:{
      name:{
       type:String as PropType<string>
+     },
+     isShowDeBtn:{
+      type:Boolean as PropType<boolean>,
+      default:false
      }
    },
    setup:(props,context)=>{
@@ -29,6 +35,15 @@ export const TagForm=defineComponent({
        Object.assign(errors,validate(formData,rules));
        e.preventDefault();
      }
+     const router = useRouter();
+     const onDelete = async (options?: { withItems?: boolean }) => {
+      await Dialog.confirm({
+        title: '确认',
+        message: '你真的要删除吗？',
+      })
+     
+      router.back()
+    }
      return ()=>(
         <Form onSubmit={onSubmit} >
            <FormItem label='标签名'
@@ -47,7 +62,8 @@ export const TagForm=defineComponent({
           </FormItem>
          
             <FormItem class={s.buttondiv}>
-                <Button class={[s.button]}>确定</Button>
+                <Button type="submit" class={[s.button]}>确定</Button>
+                <Button onClick={() => onDelete({ withItems: true })} class={[s.button,props.isShowDeBtn?'':s.hiddenBtn]}>删除标签</Button> 
             </FormItem>
         </Form>
      )

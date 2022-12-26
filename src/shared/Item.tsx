@@ -20,12 +20,11 @@ export const Item = defineComponent({
             required: true
         }
 
-
     },
     setup: (props, context) => {
         return () => {
             const isincome=props.tagPrice>0;
-            return <div class={s.item } >
+            return <div class={s.item }  >
                 <div class={s.sign}>
                     <span>{props.tagIcon}</span>
                 </div>
