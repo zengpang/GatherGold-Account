@@ -1,4 +1,5 @@
 module.exports = {
+    baseUrl:'./',
     publicPath: './',
     outputDir: "dist", // 输出文件目录
     lintOnSave: false, // eslint 是否在保存时检查

@@ -4,6 +4,8 @@ import { Time } from '../../shared/time';
 import s from './InputPad.module.scss';
 import { DatetimePicker, NumberKeyboard, Popup } from 'vant';
 import { TextIcon } from '../../shared/TextIcon';
+import { Button } from '../../shared/Button';
+
 export const InputPad=defineComponent({
     props: {
         name: {
@@ -64,7 +66,7 @@ export const InputPad=defineComponent({
           { text: '.', onClick: () => { appendText('.') } },
           { text: '0', onClick: () => { appendText(0) } },
           { text: '清空', onClick: () => { refAmount.value = '0' } },
-          { text: '提交', onClick: () => { } },
+          // { text: '提交', onClick: () => { } },
         ]
         const refDatePickerVisible=ref(false);
         const showDatePicker=()=>refDatePickerVisible.value=true;
@@ -72,12 +74,14 @@ export const InputPad=defineComponent({
         const setDate=(date:Date)=>{refDate.value=date;hideDatePicker()};
 
         return()=>(
-           <>
+           <div>
+
            <div class={s.dateAndAmount}>
+           <span class={s.money}>￥<span class={s.amount}>{refAmount.value}</span></span>
         <span class={s.date}>
           <TextIcon textIconName="date" class={s.icon} />
           <span>
-            <span onClick={showDatePicker}>{new Time(refDate.value).format()}</span>
+            <span onClick={showDatePicker} class={s.dateContent}>{'标签时间为'+new Time(refDate.value).format()}</span>
             <Popup position='bottom' v-model:show={refDatePickerVisible.value}>
               <DatetimePicker value={refDate.value} type="date" title="选择年月日"
                 onConfirm={setDate} onCancel={hideDatePicker}
@@ -85,14 +89,16 @@ export const InputPad=defineComponent({
             </Popup>
           </span>
         </span>
-        <span class={s.amount}>{refAmount.value}</span>
+        {/* <span class={s.amount}>{refAmount.value}</span> */}
       </div>
       <div class={s.buttons}>
         {buttons.map(button =>
-          <button onClick={button.onClick}>{button.text}</button>
+          <button onClick={button.onClick}><div class={[s.btnbg]}>{button.text} </div></button>
         )}
+        <Button>提交</Button>
       </div>
-           </>
+     
+           </div>
         )
     }
 })

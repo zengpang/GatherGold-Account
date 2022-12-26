@@ -4,7 +4,7 @@ export const TagItem = defineComponent({
     props: {
         tagNumber: {
             type: Number as PropType<number>,
-            required: true
+            required: false
         },
         tagName: {
             type: String as PropType<string>,

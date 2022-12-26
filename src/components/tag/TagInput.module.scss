@@ -1,0 +1,18 @@
+.tagInput {
+    width: 100vw;
+    position: fixed;
+    margin-top: 15.02vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .titleTag {
+        width: 92.36vw;
+        border-radius: 10px;
+        background: var(--shallow-gray-color);
+
+    }
+    .inputPad{
+        margin-top: 12.91vh;
+    }
+}
