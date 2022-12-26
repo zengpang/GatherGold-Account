@@ -32,7 +32,7 @@ export const Charts = defineComponent({
         <FormItem label='类型' type="select" options={[
           { value: 'expenses', text: '支出' },
           { value: 'income', text: '收入' }
-        ]} v-model={category.value} />
+        ]} v-model={category.value} class={s.chartSelect} />
         <LineChart />
         <PieChart />
         <Bars />

@@ -39,8 +39,9 @@
   }
 
   &.select {
-    border: 1px solid #5c33be;
-    border-radius: 15px;
+
+    border: 1px solid var( --btn-unSelected-color);
+    border-radius: 6px;
     padding: 0 8px;
 
   }
