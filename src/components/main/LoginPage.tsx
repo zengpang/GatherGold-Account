@@ -7,6 +7,8 @@ import { MainLayout } from '../../layouts/MainLayout';
 import { GifIcon } from '../../shared/GifIcon';
 import LoadGif from '../../assets/icons/GifIcons/LoginGif.json';
 import axios from 'axios';
+import { useBool } from '../../hooks/useBool';
+import { useRoute, useRouter } from 'vue-router';
 export const LoginPage = defineComponent({
     setup: (props, context) => {
         const formData = reactive({
@@ -18,6 +20,9 @@ export const LoginPage = defineComponent({
             code: []
         })
         const refValidationCode = ref<any>();
+        const {ref:refDisabled,toggle,on:disabled,off:enable}=useBool(false);
+        const router=useRouter();
+        const route=useRoute();
         const onSubmit = (e: Event) => {
             e.preventDefault();
             Object.assign(errors, {
@@ -30,7 +35,9 @@ export const LoginPage = defineComponent({
             ]))
         }
         const onClickSendValidationCode=async()=>{
-            const response=await axios.post('/api/v1/validation_codes',{email:formData.email})
+            console.log("发送验证码");
+            //http://121.196.236.94:3000/
+            const response=await axios.post('api/v1/validation_codes',{email:formData.email})
             .catch(()=>{
                 //失败
             })
@@ -52,9 +59,10 @@ export const LoginPage = defineComponent({
                       <FormItem label="邮箱地址" type="text"
                         placeholder='请输入邮箱，然后点击发送验证码'
                         v-model={formData.email} error={errors.email?.[0]} />
-                      <FormItem label="验证码" type="validationCode"
+                      <FormItem ref={refValidationCode} label="验证码" type="validationCode"
                         placeholder='请输入六位数字'
                         countFrom={60}
+                        disabled={refDisabled.value}
                         onClick={onClickSendValidationCode}
                         v-model={formData.code} error={errors.code?.[0]}  />
                       <FormItem style={{ paddingTop: '2.15vh' }}>

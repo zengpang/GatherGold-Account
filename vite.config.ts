@@ -12,7 +12,12 @@ export default defineConfig({
     })
   ],
   server:{
-    host: '0.0.0.0'
+    host: '0.0.0.0',
+    proxy: {
+      '/api/v1': {
+        target: 'http://121.196.236.94:3000/',
+      }
+    }
   },
   base:'./'
  
