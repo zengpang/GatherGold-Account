@@ -5,6 +5,12 @@ import {createRouter} from 'vue-router';
 import {history} from './shared/history';
 
 const router=createRouter({history,routes});
+const whiteList:Record<string,'exact'|'startsWith'>={
+    '/':'exact',
+    '/start':'exact',
+    '/welcome':'startsWith',
+    '/main/login':'startsWith'
+}
 const app=createApp(App);
 app.use(router);
 app.mount('#app');
