@@ -9,6 +9,8 @@ import LoadGif from '../../assets/icons/GifIcons/LoginGif.json';
 import axios from 'axios';
 import { useBool } from '../../hooks/useBool';
 import { useRoute, useRouter } from 'vue-router';
+import { http } from '../../shared/Http';
+
 export const LoginPage = defineComponent({
     setup: (props, context) => {
         const formData = reactive({
@@ -34,13 +36,21 @@ export const LoginPage = defineComponent({
                 { key: 'code', type: 'required', message: '必填' },
             ]))
         }
+        const onError=(error:any)=>{
+          if(error.response.status===422)
+          {
+            Object.assign(errors,error.response.data.errors);
+          }
+          throw error;
+        }
         const onClickSendValidationCode=async()=>{
-            console.log("发送验证码");
+            disabled();
             //http://121.196.236.94:3000/
-            const response=await axios.post('api/v1/validation_codes',{email:formData.email})
-            .catch(()=>{
-                //失败
-            })
+          
+            const response=await http
+            .post('/validation_codes', { email: formData.email })
+            .catch(onError)
+            .finally(enable)
             //成功
             refValidationCode.value.startCount();
         }
