@@ -8,8 +8,6 @@ import s from './MainPage.module.scss'
 export const MainPage = defineComponent({
     setup: (props, context) => {
         const refKind = ref('home');
- 
-
         return () => (
           
             <div class={s.wrapper}>
