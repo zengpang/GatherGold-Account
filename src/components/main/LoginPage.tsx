@@ -85,7 +85,7 @@ export const LoginPage = defineComponent({
                         onClick={onClickSendValidationCode}
                         v-model={formData.code} error={errors.code?.[0]}  />
                       <FormItem style={{ paddingTop: '2.15vh' }}>
-                        <Button class={s.loginBtn}>登 录</Button>
+                        <Button type="submit" class={s.loginBtn}>登 录</Button>
                       </FormItem>
                     </Form>
                   </div>

@@ -12,4 +12,4 @@ export const refreshMe=()=>{
     return mePromise;
 }
 
-export const ferchMe=refreshMe;
+export const fetchMe=refreshMe;
