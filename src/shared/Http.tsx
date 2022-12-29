@@ -1,6 +1,9 @@
 import axios,{AxiosError,AxiosInstance,AxiosRequestConfig,AxiosRequestHeaders} from "axios";
 type JSONValue=string | number | null | boolean | JSONValue[] | {[key:string]:JSONValue};
-// type GetConfig=Omit<AxiosRequestConfig>
+type GetConfig=Omit<AxiosRequestConfig,'params'|'url'|'method'>;
+type PostConfig=Omit<AxiosRequestConfig,'url' | 'data' | 'method'>;
+type PatchConfig=Omit<AxiosRequestConfig,'url'|'data'>;
+type DeleteConfig=Omit<AxiosRequestConfig,'params'>;
 export class Http{
     instance:AxiosInstance;
     constructor(baseURL:string){
