@@ -86,7 +86,7 @@ export const ItemList = defineComponent({
             <div>
               {
                 hasMore.value?
-                <div class={s.footer} onClick={fetchTags}>加载更多</div>: 
+                <div class={[s.footer,s.loadMove]} onClick={fetchTags}  >加载更多</div>: 
                 <div class={s.footer}>没有更多</div>
               }
               
