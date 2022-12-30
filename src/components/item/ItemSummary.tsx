@@ -58,7 +58,7 @@ export const ItemSummary = defineComponent({
           <span>{"共计"}<span class={s.itemNumber}>{props.itemTitle?.length}</span>{"张"}</span>
         </div>
         <div class={s.footer}>
-          <ItemList class={s.itemList} Items={props.items} ItemType='bill'></ItemList>
+          <ItemList kind='' class={s.itemList}  ItemType='bill'></ItemList>
         </div>
       </div>
     )

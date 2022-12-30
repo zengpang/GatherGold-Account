@@ -42,7 +42,7 @@ export const mockTagIndex: Mock = (config) => {
             ...attrs
         }))
     const createBody = (n = 1, attrs?: any) => ({
-        resources: createTag(n), paper: createPaper(page)
+        resources: createTag(n), pager: createPaper(page)
     })
     if (kind === 'expenses' && (!page || page === 1)) {
         return [200, createBody(25)];

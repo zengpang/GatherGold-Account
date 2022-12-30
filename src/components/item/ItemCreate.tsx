@@ -17,6 +17,7 @@ export const ItemCreate = defineComponent({
   },
   
   setup: (props, context) => {
+
     const refKind = ref('支出');
     const refExpensesTags = ref([
       { id: 1, name: '餐费', sign: '\u{1F471}', category: 'expenses' },
@@ -75,12 +76,12 @@ export const ItemCreate = defineComponent({
               <TabPageBar v-model:selected={refKind.value}>
                 <TabPage name='支出' class={s.tabPage} >
                   <a class={s.itemTitle}>支出标签</a>
-                  <ItemList  kind="expenses"  ItemType='tag'  Items={refExpensesTags.value} class={s.itemList}></ItemList>
+                  <ItemList  kind="expenses"  ItemType='tag'   class={s.itemList}></ItemList>
                   <RouterLink to={'/tags/create'} class={s.addTag} ><Button class={s.addTagBtn}>添 加 标 签</Button></RouterLink>
                 </TabPage>
                 <TabPage name='收入' class={s.tabPage}>
                   <a class={s.itemTitle}>收入标签</a>
-                  <ItemList  kind="income" ItemType='tag' Items={refIncomeTags.value} class={s.itemList}></ItemList>
+                  <ItemList  kind="income" ItemType='tag'  class={s.itemList}></ItemList>
                   <RouterLink to={'/tags/create'} class={s.addTag} ><Button class={s.addTagBtn}>添 加 标 签</Button></RouterLink>
                 </TabPage>
 
