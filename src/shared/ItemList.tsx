@@ -68,7 +68,11 @@ export const ItemList = defineComponent({
               return (<TagItem onClick={() => onSelect(item)}   onTouchstart={(e)=>onTouchStart(e, item)}
               onTouchend={onTouchEnd} tagIcon={item.sign} tagNumber={index + 1} tagName={item.name} class={s.item}></TagItem>)
             })}
-            <div class={s.footer}>没有更多</div>
+            <div>
+              
+              <div class={s.footer}>没有更多</div>
+            </div>
+      
           </div>
         };
         case undefined: {
