@@ -26,6 +26,36 @@ const createId = () => {
     id += 1;
     return id;
 }
+export const mockItemIndex:Mock=(config)=>{
+    const {kind,page}=config.params;
+    const per_page=25;
+    const count=26;
+    const createPaper=(page=1)=>({
+        page,
+        per_page,
+        count
+    });
+    const createTag=(attrs?:any)=>({
+      id:createId(),
+      name:faker.lorem.word(),
+      sign:faker.internet.emoji(),
+      kind: 'expenses',
+      ...attrs
+    });
+    const createItem=(n=1,attrs?:any)=>Array.from({length:n}).map(()=>({
+        id:createId(),
+        user_id:createId(),
+        amount:Math.floor(Math.random()*10000),
+        tags_id:[createId()],
+        tags:[createTag()],
+        happen_at:faker.date.past().toISOString(),
+        kind:config.params.kind,
+    }))
+    const createBody=(n = 1, attrs?: any)=>({
+        
+    })
+
+}
 export const mockTagIndex: Mock = (config) => {
     const { kind, page } = config.params;
     const per_page = 25;
