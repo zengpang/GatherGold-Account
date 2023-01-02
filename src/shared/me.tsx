@@ -8,6 +8,7 @@ export let mePromise: Promise<AxiosResponse<{
 }>> | undefined
 
 export const refreshMe = () => {
+  console.log("刷新refreshMe");
   mePromise = http.get<{ resource: { id: number } }>('/me')
   return mePromise
 }

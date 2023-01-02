@@ -14,26 +14,21 @@ const whiteList:Record<string,'exact'|'startsWith'>={
     '/welcome':'startsWith',
     '/main/login':'startsWith'
 }
-router.beforeEach((to,from)=>{
-    //遍历白名单
-    for(const key in whiteList)
-    {
-        
-        const value=whiteList[key];
-        if(value==='exact'&&to.path===key)
-        {
-            return true;
-        }
-        if(value==='startsWith'&&to.path.startsWith(key))
-        {
-            return true;
-        }
-    }
-    return mePromise!.then(
-        ()=>true,
-        () => '/main/login?return_to=' + to.path
-    )
-})
+// router.beforeEach((to, from) => {
+//     for (const key in whiteList) {
+//       const value = whiteList[key]
+//       if (value === 'exact' && to.path === key) {
+//         return true
+//       }
+//       if (value === 'startsWith' && to.path.startsWith(key)) {
+//         return true
+//       }
+//     }
+//     return mePromise!.then(
+//         ()=>true,
+//         () => '/main/login?return_to=' + to.path
+//     )
+// })
 const app=createApp(App);
 app.use(router);
 app.mount('#app');
