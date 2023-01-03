@@ -2,40 +2,57 @@ import { defineComponent, PropType, reactive, toRaw } from 'vue';
 import { Button } from '../../shared/Button';
 import { EmojiSelect } from '../../shared/EmojiSelect';
 import {Form, FormItem } from '../../shared/Form';
-import { Rules,validate } from '../../shared/validate';
+import { hasError, Rules,validate } from '../../shared/validate';
 import { useRoute, useRouter } from 'vue-router'
 import { Dialog } from 'vant'
 import s from './Tag.module.scss';
+import { http } from '../../shared/Http';
+
 export const TagForm=defineComponent({
    props:{
-     name:{
-      type:String as PropType<string>
-     },
+     id:Number,
+     //是否显示删除按钮
      isShowDeBtn:{
       type:Boolean as PropType<boolean>,
       default:false
      }
    },
    setup:(props,context)=>{
-     const formData=reactive({
-      name: '',
-      sign: '',
-     });
+     const route=useRoute();
+     const formData=reactive<Partial<Tag>>({
+       id:undefined,
+       name:'',
+       sign:'',
+       kind:route.query.kind!.toString()
+     })
      const errors=reactive<{[k in keyof typeof formData]?:string[]}>({})
-     const onSubmit=(e:Event)=>{
+     const router=useRouter();
+     const onSubmit=async (e:Event)=>{
+      e.preventDefault();
       const rules: Rules<typeof formData> = [
          { key: 'name', type: 'required', message: '必填' },
          { key: 'name', type: 'pattern', regex: /^.{1,4}$/, message: '只能填 1 到 4 个字符' },
          { key: 'sign', type: 'required', message: '必填' },
        ]
        Object.assign(errors,{
-         name:undefined,
-         sign:undefined
+         name:[],
+         sign:[]
        })
        Object.assign(errors,validate(formData,rules));
-       e.preventDefault();
+       if(!hasError(errors)){
+          const promise=await formData.id?
+          http.patch(`/tags/${formData.id}`,formData,{
+            params:{_mock:'tagEdit'},
+          }):
+          http.post(`/tags`,formData,{
+            params:{_mock:'tagCreate'}
+          })
+          await promise.catch((error)=>
+          
+          )
+       }
      }
-     const router = useRouter();
+     
      const onDelete = async (options?: { withItems?: boolean }) => {
       await Dialog.confirm({
         title: '确认',

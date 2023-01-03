@@ -33,15 +33,17 @@ export const ItemList = defineComponent({
     });
     console.log(tags.value);
     const ItemType = props.ItemType;
+    //标签点击事件
     const onSelect = (tag: Tag) => {
       context.emit('update:selected', tag.id);
-      console.log("触发");
+      console.log("点击触发");
       router.push(`/tags/${tag.id}/input?kind=${props.kind}?tagname=${tag.name}?tagicon=${tag.sign}&return_to=${router.currentRoute.value.fullPath}`)
     };
     const timer = ref<number>()
     const currentTag = ref<HTMLDivElement>()
 
     const router = useRouter()
+    //标签长按事件
     const onLongPress = (tagId: Tag['id']) => {
        console.log("长按触发");
        router.push(`/tags/${tagId}/edit?kind=${props.kind}&return_to=${router.currentRoute.value.fullPath}`)
@@ -78,7 +80,7 @@ export const ItemList = defineComponent({
           </div>
         };
         case "tag": {
-          return <div class={s.wrapper}>
+          return <div class={s.wrapper} onTouchmove={onTouchMove}>
             {tags.value.map((item, index) => {
               return (<TagItem onClick={() => onSelect(item)}   onTouchstart={(e)=>onTouchStart(e, item)}
               onTouchend={onTouchEnd} tagIcon={item.sign} tagNumber={index + 1} tagName={item.name} class={s.item}></TagItem>)
