@@ -14,6 +14,7 @@ export const ItemCreate = defineComponent({
     name: {
       type: String as PropType<string>
     }
+    
   },
   
   setup: (props, context) => {
@@ -77,12 +78,12 @@ export const ItemCreate = defineComponent({
                 <TabPage name='支出' class={s.tabPage} >
                   <a class={s.itemTitle}>支出标签</a>
                   <ItemList  kind="expenses"  ItemType='tag'   class={s.itemList}></ItemList>
-                  <RouterLink to={'/tags/create'} class={s.addTag} ><Button class={s.addTagBtn}>添 加 标 签</Button></RouterLink>
+                  <RouterLink to={'/tags/create?kind=expenses'} class={s.addTag} ><Button class={s.addTagBtn}>添 加 标 签</Button></RouterLink>
                 </TabPage>
                 <TabPage name='收入' class={s.tabPage}>
                   <a class={s.itemTitle}>收入标签</a>
                   <ItemList  kind="income" ItemType='tag'  class={s.itemList}></ItemList>
-                  <RouterLink to={'/tags/create'} class={s.addTag} ><Button class={s.addTagBtn}>添 加 标 签</Button></RouterLink>
+                  <RouterLink to={`/tags/create?kind=income`} class={s.addTag} ><Button class={s.addTagBtn}>添 加 标 签</Button></RouterLink>
                 </TabPage>
 
               </TabPageBar>
