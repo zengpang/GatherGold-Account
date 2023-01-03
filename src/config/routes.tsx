@@ -24,6 +24,10 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/welcome',
     component: Welcome,
+    beforeEnter:(to,from,next)=>{
+      //获取skipFeatures键值对的值，如果为yes则判断用户看过或跳过引导页，则直接前往首页
+      localStorage.getItem('skipFeatures') === 'yes' ? next('/start') : next();
+    },
     //子页
     children: [
       { path: '', redirect: '/welcome/1' },

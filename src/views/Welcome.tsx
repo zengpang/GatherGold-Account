@@ -3,6 +3,7 @@ import {RouteLocationNormalizedLoaded, RouterView, useRoute, useRouter } from 'v
 import {RouterLink} from 'vue-router';
 import { useSwipe } from '../hooks/useSwipe';
 import {throttle} from '../shared/throttle';
+import { SkipFeatures } from '../shared/SkipFeatures';
 import s from './Welcome.module.scss'
 const pushMap:Record<string,string>={
     'Welcome1': '/welcome/2',
@@ -39,7 +40,7 @@ export const Welcome = defineComponent({
         </RouterView>
             </main>
             <footer>
-               <RouterLink to="/start">跳过</RouterLink> 
+               <SkipFeatures class={s.fake}><RouterLink to="/start">跳过</RouterLink></SkipFeatures> 
             </footer>
         </div>
 

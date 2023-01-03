@@ -22,14 +22,17 @@
     height: 21%;
     
     transition: all var(--animTime);
-    >a{
-      justify-content: center;
-      align-items: center;
-      outline: none;
-      text-decoration:none;
-      color: var(--hint-font-color);
-      cursor: none;
+    >.fake{
+      >a{
+        justify-content: center;
+        align-items: center;
+        outline: none;
+        text-decoration:none;
+        color: var(--hint-font-color);
+        cursor: none;
+      }
     }
+   
    }
 }
 .slide_fade_enter_active,

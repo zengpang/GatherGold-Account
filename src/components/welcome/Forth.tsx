@@ -7,6 +7,10 @@ import { GifIcon } from '../../shared/GifIcon';
 import { Button } from '../../shared/Button';
 export const Forth = defineComponent({
   setup: () => {
+    const onClick=()=>{
+      
+      localStorage.setItem('skipFeatures', 'yes');
+    }
     return () => (
       <WelcomeLayout>
         {{
