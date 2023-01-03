@@ -14,8 +14,9 @@ export default defineConfig({
   server:{
     host: '0.0.0.0',
     proxy: {
+      //转发api路径代理设置
       '/api/v1': {
-        target: 'http://121.196.236.94:3000/',
+        target: 'http://121.196.236.94:3000/',//当输入相对路径/api/v1实际指向路径
       }
     }
   },

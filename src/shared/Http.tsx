@@ -10,6 +10,7 @@ export class Http {
   instance: AxiosInstance
   constructor(baseURL: string) {
     console.log(baseURL);
+    //axios初始化
     this.instance = axios.create({
       baseURL
     })
@@ -27,8 +28,9 @@ export class Http {
     return this.instance.request<R>({ ...config, url: url, params: query, method: 'delete' })
   }
 }
-
+//mock,测试用
 const mock = (response: AxiosResponse) => {
+  //检测运行地址，运行地址如果为本地ip，自动启用mock
   if (location.hostname !== 'localhost'
     && location.hostname !== '127.0.0.1'
     && location.hostname !== '192.168.2.149') { return false }
@@ -57,7 +59,7 @@ const mock = (response: AxiosResponse) => {
   }
   return false
 }
-
+//新建http
 export const http = new Http('/api/v1')
 
 http.instance.interceptors.request.use(config => {
