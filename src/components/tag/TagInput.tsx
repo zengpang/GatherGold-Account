@@ -9,7 +9,11 @@ export const TagInput=defineComponent({
     setup:(props,context)=>{
         const route = useRoute();
         const numberId = parseInt(route.params.id!.toString());
-        
+        if(Number.isNaN(numberId))
+        {
+            return ()=><div>id 不存在</div>
+        }
+        const router=useRouter();
         return ()=>(
             <MainLayout iconShow={true}>
                  {{
