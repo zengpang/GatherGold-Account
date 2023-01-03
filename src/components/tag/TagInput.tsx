@@ -14,6 +14,11 @@ export const TagInput=defineComponent({
             return ()=><div>id 不存在</div>
         }
         const router=useRouter();
+        const formData=reactive({
+            kind:'支出',
+            tags_id:[],
+            
+        })
         return ()=>(
             <MainLayout iconShow={true}>
                  {{

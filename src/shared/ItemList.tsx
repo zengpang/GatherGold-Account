@@ -1,5 +1,5 @@
 import s from './ItemList.module.scss';
-import { defineComponent, onUpdated, PropType, ref } from 'vue';
+import { defineComponent, onUpdated, PropType, reactive, ref } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
 import { Item } from './Item';
 import { TagItem } from './TagItem';
@@ -23,7 +23,12 @@ export const ItemList = defineComponent({
   },
   emits: ['update:selected'],
   setup(props, context) {
-
+    const formData=reactive({
+      kind:'支出',
+      tags_id:[],
+      amount:0,
+      happen_at: new Date().toISOString(),
+    });
     const { tags, hasMore, page, fetchTags } = useTags((page) => {
       return http.get<Resources<Tag>>('/tags', {
         kind: props.kind,
@@ -31,7 +36,7 @@ export const ItemList = defineComponent({
         _mock: 'tagIndex',
       });
     });
-    console.log(tags.value);
+    
     const ItemType = props.ItemType;
     //标签点击事件
     const onSelect = (tag: Tag) => {
@@ -64,6 +69,7 @@ export const ItemList = defineComponent({
         clearTimeout(timer.value)
       }
     }
+   
     return () => {
     
       // const Items = props.Items;
