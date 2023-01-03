@@ -92,6 +92,20 @@ export const mockTagEdit:Mock=config=>{
   })
   return [200,{resource:createTag()}]
 }
+export const mockTagInput:Mock=config=>{
+  const createTag=(attrs?:any)=>({
+    //标签id
+    id:createId(),
+    //标签名称
+    name:faker.lorem.word(),
+    //标签符号
+    sign:faker.internet.emoji(),
+    //标签种类
+    kind: 'expenses',
+    ...attrs
+  })
+  return [200,{resource:createTag()}]
+}
 export const mockTagShow:Mock=config=>{
   const createTag=(attrs?:any)=>({
     //标签id
