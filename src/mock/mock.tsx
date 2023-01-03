@@ -10,7 +10,7 @@ export const mockItemIndexBalance: Mock = config => {
     balance: 0
   }]
 }
-export const mockItemindex: Mock = (config) => {
+export const mockItemIndex: Mock = (config) => {
   //设置记账项种类和页码
   const { kind, page } = config.params;
   //设置每页记账项数量为25
@@ -76,6 +76,35 @@ export const mockItemindex: Mock = (config) => {
      return [200,{}]
     }
   }
+}
+export const mockTagEdit:Mock=config=>{
+
+  const createTag=(attrs?:any)=>({
+    //标签id
+    id:createId(),
+    //标签名称
+    name:faker.lorem.word(),
+    //标签符号
+    sign:faker.internet.emoji(),
+    //标签种类
+    kind: 'expenses',
+    ...attrs
+  })
+  return [200,{resource:createTag()}]
+}
+export const mockTagShow:Mock=config=>{
+  const createTag=(attrs?:any)=>({
+    //标签id
+    id:createId(),
+    //标签名称
+    name:faker.lorem.word(),
+    //标签符号
+    sign:faker.internet.emoji(),
+    //标签种类
+    kind: 'expenses',
+    ...attrs
+  })
+  return [200, {resource: createTag()}];
 }
 export const mockItemCreate: Mock = config => {
   return [200, {
