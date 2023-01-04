@@ -37,6 +37,7 @@ export const Item = defineComponent({
                         
                     </div>
                     <div class={s.price}>
+                    {/* (isincome?"+￥":"-￥")+ */}
                        <span class={[s.amount,isincome?s.income:'']}>{(isincome?"+￥":"-￥")+props.tagPrice}</span>
                     </div>
                 </div>

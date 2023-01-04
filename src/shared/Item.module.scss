@@ -22,15 +22,19 @@
         flex-grow: 1;
         flex-shrink: 1;
         display: flex;
+        
         justify-content: space-between;
         .tagAndTime {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            width: 25.35vw;
             .tag {
                 color: black;
             }
-
+            .time{
+                width: auto;
+            }
           
         }
 
@@ -38,10 +42,15 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            justify-content: center;
+            align-items: center;
             .amount {
                 color: var(--btn-bgColor-end);
-             
+                display: flex;
+                flex-direction: column;
+               
                 &.income{
+         
                     color: var(--page-bgColor-end);
                 }
             }
