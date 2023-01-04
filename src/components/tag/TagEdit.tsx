@@ -57,10 +57,7 @@ export const TagEdit=defineComponent({
               
               default: () => <>
                 <TagForm id={numberId} class={s.tagForm} isShowDeBtn={true}/>
-                {/* <div class={s.actions}>
-                 
-                  <Button  class={s.removeTagsAndItems} onClick={() => { }}>删除标签和记账</Button>
-                </div> */}
+           
               </>
             }}</MainLayout>
           )

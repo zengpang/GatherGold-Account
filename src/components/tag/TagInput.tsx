@@ -1,4 +1,4 @@
-import { defineComponent, reactive, resolveComponent } from 'vue';
+import { defineComponent, onMounted, reactive, resolveComponent } from 'vue';
 import { MainLayout } from '../../layouts/MainLayout';
 import { Button } from '../../shared/Button';
 import { InputPad} from '../item/InputPad';
@@ -12,17 +12,18 @@ export const TagInput=defineComponent({
     setup:(props,context)=>{
         const route = useRoute();
         const numberId = parseInt(route.params.id!.toString());
-        if(Number.isNaN(numberId))
-        {
-            return ()=><div>id 不存在</div>
-        } 
+        
+        const router=useRouter();
+        
         const formData=reactive({
-            kind:'支出',
-            tags_id:[],
+            id: undefined,
+            name: '',
+            sign: '',
+            kind:route.query.kind!.toString(),
             amount:0,
             happen_at:new Date().toISOString()
         });
-        const router=useRouter();
+       
         const onError=(error:AxiosError<ResourceError>)=>{
             if(error.response?.status===422)
             {
@@ -35,20 +36,30 @@ export const TagInput=defineComponent({
             throw error;
         };
         const onSubmit = async () => {
+            let Date={
+
+            }
             await http
-              .post<Resource<Item>>('/main/home', formData, {
+              .post<Resource<Item>>('/items', formData, {
                 params: { _mock: 'itemCreate' },
               })
               .catch(onError);
             router.push('/main/home');
           };
+        onMounted(async ()=>{
+            if(!numberId){return};
+            
+            const response = await http.get<Resource<Tag>>(`/tags/${numberId}`, {
+                _mock: 'tagShow'
+            })
+            Object.assign(formData,response.data.resource)
+        })
         return ()=>(
             <MainLayout iconShow={true}>
                  {{
                      title: () => '标签数值输入',
                      default:()=><div class={s.tagInput}>
-                        <TagItem tagName={'吃饭'} tagIcon={'\u{1F471}'} class={s.titleTag}></TagItem>
-                       
+                        <TagItem tagName={formData.name} tagIcon={formData.sign} class={s.titleTag}></TagItem>
                         <InputPad 
                         class={s.inputPad} 
                         v-model:happenAt={formData.happen_at} 

@@ -16,7 +16,7 @@ export class Http {
     })
   }
   get<R = unknown>(url: string, query?: Record<string, JSONValue>, config?: GetConfig) {
-    return this.instance.request<R>({ ...config, url: url, params: query, method: 'get' })
+    return this.instance.request<R>({ ...config, url: url, params: query, method: "get" });
   }
   post<R = unknown>(url: string, data?: Record<string, JSONValue>, config?: PostConfig) {
     return this.instance.request<R>({ ...config, url, data, method: 'post' })

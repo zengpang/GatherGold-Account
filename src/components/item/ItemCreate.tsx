@@ -20,52 +20,7 @@ export const ItemCreate = defineComponent({
   setup: (props, context) => {
 
     const refKind = ref('支出');
-    const refExpensesTags = ref([
-      { id: 1, name: '餐费', sign: '\u{1F471}', category: 'expenses' },
-      { id: 2, name: '打车', sign: '\u{1F471}', category: 'expenses' },
-      { id: 3, name: '聚餐', sign: '\u{1F471}', category: 'expenses' },
-      { id: 4, name: '打车', sign: '\u{1F471}', category: 'expenses' },
-      { id: 5, name: '聚餐', sign: '\u{1F471}', category: 'expenses' },
-      { id: 6, name: '打车', sign: '\u{1F471}', category: 'expenses' },
-      { id: 7, name: '聚餐', sign: '\u{1F471}', category: 'expenses' },
-    ])
-    const refIncomeTags = ref([
-      { id: 4, name: '工资', sign: '\u{1F471}', category: 'income' },
-      { id: 5, name: '彩票', sign: '\u{1F471}', category: 'income' },
-      { id: 6, name: '滴滴', sign: '\u{1F471}', category: 'income' },
-      { id: 11, name: '彩票', sign: '\u{1F471}', category: 'income' },
-      { id: 18, name: '滴滴', sign: '\u{1F471}', category: 'income' },
-      { id: 17, name: '彩票', sign: '\u{1F471}', category: 'income' },
-      { id: 19, name: '滴滴', sign: '\u{1F471}', category: 'income' },
-      { id: 4, name: '工资', sign: '\u{1F471}', category: 'income' },
-      { id: 5, name: '彩票', sign: '\u{1F471}', category: 'income' },
-      { id: 6, name: '滴滴', sign: '\u{1F471}', category: 'income' },
-      { id: 11, name: '彩票', sign: '\u{1F471}', category: 'income' },
-      { id: 18, name: '滴滴', sign: '\u{1F471}', category: 'income' },
-      { id: 17, name: '彩票', sign: '\u{1F471}', category: 'income'},
-      { id: 19, name: '滴滴', sign: '\u{1F471}', category: 'income' },
-      { id: 4, name: '工资', sign: '\u{1F471}', category: 'income' },
-      { id: 5, name: '彩票', sign: '\u{1F471}', category: 'income' },
-      { id: 6, name: '滴滴', sign: '\u{1F471}', category: 'income' },
-      { id: 11, name: '彩票', sign: '\u{1F471}', category: 'income' },
-      { id: 18, name: '滴滴', sign: '\u{1F471}', category: 'income' },
-      { id: 17, name: '彩票', sign: '\u{1F471}', category: 'income' },
-      { id: 19, name: '滴滴', sign: '\u{1F471}', category: 'income' },
-      { id: 4, name: '工资', sign: '\u{1F471}', category: 'income' },
-      { id: 5, name: '彩票', sign: '\u{1F471}', category: 'income' },
-      { id: 6, name: '滴滴', sign: '\u{1F471}', category: 'income' },
-      { id: 11, name: '彩票', sign: '\u{1F471}', category: 'income' },
-      { id: 18, name: '滴滴', sign: '\u{1F471}', category: 'income' },
-      { id: 17, name: '彩票', sign: '\u{1F471}', category: 'income' },
-      { id: 19, name: '滴滴', sign: '\u{1F471}', category: 'income'},
-      { id: 4, name: '工资', sign: '\u{1F471}', category: 'income' },
-      { id: 5, name: '彩票', sign: '\u{1F471}', category: 'income' },
-      { id: 6, name: '滴滴', sign: '\u{1F471}', category: 'income' },
-      { id: 11, name: '彩票', sign: '\u{1F471}', category: 'income' },
-      { id: 18, name: '滴滴', sign: '\u{1F471}', category: 'income' },
-      { id: 17, name: '彩票', sign: '\u{1F471}', category: 'income' },
-      { id: 19, name: '滴滴', sign: '\u{1F471}', category: 'income' },
-    ])
+   
     console.log("刷新页面");
     
     return () => (
