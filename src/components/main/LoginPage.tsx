@@ -26,24 +26,26 @@ export const LoginPage = defineComponent({
         const {ref:refDisabled,toggle,on:disabled,off:enable}=useBool(false);
         const router=useRouter();
         const route=useRoute();
-        const onSubmit =async (e: Event) => {
-            e.preventDefault();
-            Object.assign(errors, {
-                email: [], code: []
-            })
-            Object.assign(errors, validate(formData, [
-                { key: 'email', type: 'required', message: '必填' },
-                { key: 'email', type: 'pattern', regex: /.+@.+/, message: '必须是邮箱地址' },
-                { key: 'code', type: 'required', message: '必填' },
-            ]))
-            if(!hasError(errors))
-            {
-               const response=await http.post<{jwt:string}>('/session',formData);
-               localStorage.setItem('jwt',response.data.jwt);
-               const returnTo=route.query.return_to?.toString();
-               refreshMe();
-               router.push(returnTo||'/');
-            }
+        const onSubmit = async (e: Event) => {
+          e.preventDefault()
+          Object.assign(errors, {
+            email: [], code: []
+          })
+          Object.assign(errors, validate(formData, [
+            { key: 'email', type: 'required', message: '必填' },
+            { key: 'email', type: 'pattern', regex: /.+@.+/, message: '必须是邮箱地址' },
+            { key: 'code', type: 'required', message: '必填' },
+          ]))
+          if (!hasError(errors)) {
+            const response = await http.post<{ jwt: string }>('/session', formData)
+              .catch(onError)
+            console.log(response)
+            localStorage.setItem('jwt', response.data.jwt)
+            // router.push('/sign_in?return_to='+ encodeURIComponent(route.fullPath))
+            const returnTo = route.query.return_to?.toString()
+            refreshMe()
+            router.push(returnTo || '/')
+          }
         }
         const onError=(error:any)=>{
           if(error.response.status===422)

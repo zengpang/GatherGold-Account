@@ -5,52 +5,45 @@ import { Time } from '../shared/time';
 import { MainLayout } from './MainLayout';
 import { Overlay } from 'vant';
 import { ItemSummary } from '../components/item/ItemSummary';
-import { FormItem,Form } from '../shared/Form';
+import { FormItem, Form } from '../shared/Form';
 import { TabPageBar, TabPage } from '../shared/TabPageBar';
 const demo = defineComponent({
     props: {
         startDate: {
-          type: String as PropType<string>,
-          required: true
+            type: String as PropType<string>,
+            required: true
         },
         endDate: {
-          type: String as PropType<string>,
-          required: true
+            type: String as PropType<string>,
+            required: true
         },
         itemTitle: {
-          type: String as PropType<string>,
-          required: false,
-          defulat:""
+            type: String as PropType<string>,
+            required: false,
+            defulat: ""
         },
-        // items: {
-        //   type: Array as PropType<Array<any>>,
-        //   required: true
-        // }
-      },
+
+    },
 });
 export const TimeTabsLayout = defineComponent({
-    props:{
-       component:{
-        type: Object as PropType<typeof demo>,
-        required: true
-       }
+    props: {
+        component: {
+            type: Object as PropType<typeof demo>,
+            required: true
+        },
+
+        hideThisYear: {
+            type: Boolean,
+            default: false
+        }
     },
     setup: (props, context) => {
-        //测试数组无实际含义
-        const TestArray = ref([
-            { id: 1, name: '餐费', sign: '\u{1F471}', category: 'expenses' },
-            { id: 2, name: '打车', sign: '\u{1F471}', category: 'expenses' },
-            { id: 3, name: '聚餐', sign: '\u{1F471}', category: 'expenses' },
-            { id: 4, name: '打车', sign: '\u{1F471}', category: 'expenses' },
-            { id: 5, name: '聚餐', sign: '\u{1F471}', category: 'expenses' },
-            { id: 6, name: '打车', sign: '\u{1F471}', category: 'expenses' },
-            { id: 7, name: '聚餐', sign: '\u{1F471}', category: 'expenses' },
-        ]);
+
         const refPageKind = ref('本月');
         const time = new Time();
-        const tempTime=reactive({
-            start:new Time().format(),
-            end:new Time().format()
+        const tempTime = reactive({
+            start: new Time().format(),
+            end: new Time().format()
         })
         const customTime = reactive({
             start: new Time().format(),
@@ -89,7 +82,7 @@ export const TimeTabsLayout = defineComponent({
                         default: () => (
 
                             <div class={s.timeTabsLayout}>
-                                <TabPageBar v-model:selected={refPageKind.value} onUpdate:selected={onSelect}>
+                                {props.hideThisYear ? (<TabPageBar v-model:selected={refPageKind.value} onUpdate:selected={onSelect}>
                                     <TabPage name='本月' class={s.tabPage} >
                                         <props.component itemTitle='本月账单' startDate={timeList[0].start.format()}
                                             endDate={timeList[0].end.format()} ></props.component>
@@ -98,17 +91,36 @@ export const TimeTabsLayout = defineComponent({
                                         <props.component itemTitle='上个月账单' startDate={timeList[1].start.format()}
                                             endDate={timeList[1].end.format()} ></props.component>
                                     </TabPage>
-                                    <TabPage name='今年' class={s.tabPage} >
-                                        <props.component itemTitle='今年账单' startDate={timeList[2].start.format()}
-                                            endDate={timeList[2].end.format()}></props.component>
-                                    </TabPage>
+
                                     <TabPage name='其他' class={s.tabPage} >
 
                                         <props.component itemTitle='自定义时间账单' startDate={timeList[2].start.format()}
                                             endDate={timeList[2].end.format()}></props.component>
 
                                     </TabPage>
-                                </TabPageBar>
+                                </TabPageBar>) : (
+                                    <TabPageBar v-model:selected={refPageKind.value} onUpdate:selected={onSelect}>
+                                        <TabPage name='本月' class={s.tabPage} >
+                                            <props.component itemTitle='本月账单' startDate={timeList[0].start.format()}
+                                                endDate={timeList[0].end.format()} ></props.component>
+                                        </TabPage>
+                                        <TabPage name='上个月' class={s.tabPage} >
+                                            <props.component itemTitle='上个月账单' startDate={timeList[1].start.format()}
+                                                endDate={timeList[1].end.format()} ></props.component>
+                                        </TabPage>
+                                        <TabPage name='今年' class={s.tabPage} >
+                                            <props.component itemTitle='今年账单' startDate={timeList[2].start.format()}
+                                                endDate={timeList[2].end.format()}></props.component>
+                                        </TabPage>
+                                        <TabPage name='其他' class={s.tabPage} >
+
+                                            <props.component itemTitle='自定义时间账单' startDate={timeList[2].start.format()}
+                                                endDate={timeList[2].end.format()}></props.component>
+
+                                        </TabPage>
+                                    </TabPageBar>
+                                )}
+
                                 <Overlay show={refOverlayVisible.value} class={s.overlay}>
                                     <div class={s.overlay_inner}>
                                         <header >
@@ -116,7 +128,7 @@ export const TimeTabsLayout = defineComponent({
                                         </header>
                                         <main>
                                             <Form onSubmit={onSubmitCustomTime}>
-                                                <FormItem label='开始时间' v-model={customTime.start} type='date'  />
+                                                <FormItem label='开始时间' v-model={customTime.start} type='date' />
                                                 <FormItem label='结束时间' v-model={customTime.end} type='date' />
                                                 <FormItem>
                                                     <div class={s.actions}>
