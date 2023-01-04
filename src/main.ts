@@ -16,23 +16,23 @@ const whiteList: Record<string, 'exact' | 'startsWith'> = {
 }
 
 //路由守卫
-// router.beforeEach((to, from) => {
-// 遍历所有路径白名单键值
-//     for (const key in whiteList) {
-//  通过键值获取路径白名单的值
-//       const value = whiteList[key]
-//       if (value === 'exact' && to.path === key) {
-//         return true
-//       }
-//       if (value === 'startsWith' && to.path.startsWith(key)) {
-//         return true
-//       }
-//     }
-//     return mePromise!.then(
-//         ()=>true,
-//         () => '/main/login?return_to=' + to.path
-//     )
-// })
+router.beforeEach((to, from) => {
+//遍历所有路径白名单键值
+    for (const key in whiteList) {
+ //通过键值获取路径白名单的值
+      const value = whiteList[key]
+      if (value === 'exact' && to.path === key) {
+        return true
+      }
+      if (value === 'startsWith' && to.path.startsWith(key)) {
+        return true
+      }
+    }
+    return mePromise!.then(
+        ()=>true,
+        () => '/main/login?return_to=' + to.path
+    )
+})
 const app = createApp(App);
 app.use(router);
 app.mount('#app');

@@ -22,7 +22,7 @@ export const ItemSummary = defineComponent({
     }
   },
   setup: (props, context) => {
-
+    
     return () => (
       <div class={s.wrapper}>
         <div class={s.header}>
