@@ -3,9 +3,9 @@ import { Component, DefineComponent, defineComponent, PropType, reactive, ref } 
 import 'vant/lib/index.css';
 import { Time } from '../shared/time';
 import { MainLayout } from './MainLayout';
-import { Overlay, Form } from 'vant';
+import { Overlay } from 'vant';
 import { ItemSummary } from '../components/item/ItemSummary';
-import { FormItem } from '../shared/Form';
+import { FormItem,Form } from '../shared/Form';
 import { TabPageBar, TabPage } from '../shared/TabPageBar';
 const demo = defineComponent({
     props: {
@@ -48,6 +48,10 @@ export const TimeTabsLayout = defineComponent({
         ]);
         const refPageKind = ref('本月');
         const time = new Time();
+        const tempTime=reactive({
+            start:new Time().format(),
+            end:new Time().format()
+        })
         const customTime = reactive({
             start: new Time().format(),
             end: new Time().format()
@@ -70,6 +74,7 @@ export const TimeTabsLayout = defineComponent({
         const onSubmitCustomTime = (e: Event) => {
             e.preventDefault();
             refOverlayVisible.value = false;
+            Object.assign(customTime, tempTime);
         }
         const onSelect = (value: string) => {
             if (value === '其他') {
