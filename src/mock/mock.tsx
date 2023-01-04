@@ -29,22 +29,23 @@ export const mockItemIndex: Mock = (config) => {
     name: faker.lorem.word(),//Tag名称
     sign: faker.internet.emoji(),//Tag图标
     kind: 'expenses',//Tag种类
+    ...attrs
   })
   //创建记账项信息
   const createItem = (n = 1, attrs?: any) =>
-    Array.from({ length: n }).map(() => ({
-      id: createId(),
-      user_id: createId(),
-      amount: Math.floor(Math.random() * 10000),
-      tags_id: [createId()],
-      tags: [createTag()],
-      happen_at: faker.date.past().toISOString(),
-      kind: config.params.kind
-    }))
+  Array.from({ length: n }).map(() => ({
+    id: createId(),
+    user_id: createId(),
+    amount: Math.floor(Math.random() * 10000),
+    tags_id: [createId()],
+    tags: [createTag()],
+    happen_at: faker.date.past().toISOString(),
+    kind: config.params.kind,
+  }))
   //创建记账首页信息
   const createBody=(n = 1, attrs?: any)=>({
     //记账项,n为记账项的数量
-    resource:createItem(n),
+    resources :createItem(n),
     //页码
     pager:createPaper(page),
     //收入支出净收入表头信息
@@ -57,6 +58,7 @@ export const mockItemIndex: Mock = (config) => {
       balance: 0
     }
   })
+  
   //判断当前页码
   switch(true)
   {

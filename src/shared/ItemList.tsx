@@ -7,10 +7,10 @@ import { useTags } from './useTags';
 import { http } from './Http';
 export const ItemList = defineComponent({
   props: {
-    // Items: {
-    //   type: Array as PropType<Array<any>>,
-    //   required: false
-    // },
+    Items: {
+      type: Array as PropType<Array<any>>,
+      required: false
+    },
     ItemType: {
       type: String as PropType<'bill' | 'tag'>,
       required: true
@@ -71,16 +71,13 @@ export const ItemList = defineComponent({
     }
    
     return () => {
-    
-      // const Items = props.Items;
-      
-     
- 
       switch (ItemType) {
         case "bill": {
+          const Items = props.Items;
+         
           return <div class={s.wrapper}>
-            {tags.value.map((item, index) => {
-              return (<Item tagIcon={item.sign} tagName='旅行' tagPrice={1234} tagTime={"2000-01-01 12:39"} class={s.item}></Item>)
+            {Items!.map((item, index) => {
+              return (<Item tagIcon={item.tags![0].sign} tagName={item.tags![0].name} tagPrice={item.amount} tagTime={item.happen_at} class={s.item}></Item>)
             })}
             <div class={s.footer}>没有更多</div>
           </div>
