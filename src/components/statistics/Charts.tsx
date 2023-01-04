@@ -20,10 +20,10 @@ export const Charts = defineComponent({
       required: false,
       defulat:""
     },
-    items: {
-      type: Array as PropType<Array<any>>,
-      required: true
-    }
+    // items: {
+    //   type: Array as PropType<Array<any>>,
+    //   required: true
+    // }
   },
   setup: (props, context) => {
     const category = ref('expenses')

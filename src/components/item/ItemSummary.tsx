@@ -17,10 +17,10 @@ export const ItemSummary = defineComponent({
       type: String as PropType<string>,
       required: false
     },
-    items: {
-      type: Array as PropType<Array<any>>,
-      required: true
-    }
+    // items: {
+    //   type: Array as PropType<Array<any>>,
+    //   required: true
+    // }
   },
   setup: (props, context) => {
     const items = ref<Item[]>([]);

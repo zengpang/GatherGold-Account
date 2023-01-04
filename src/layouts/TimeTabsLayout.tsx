@@ -22,10 +22,10 @@ const demo = defineComponent({
           required: false,
           defulat:""
         },
-        items: {
-          type: Array as PropType<Array<any>>,
-          required: true
-        }
+        // items: {
+        //   type: Array as PropType<Array<any>>,
+        //   required: true
+        // }
       },
 });
 export const TimeTabsLayout = defineComponent({
@@ -87,20 +87,20 @@ export const TimeTabsLayout = defineComponent({
                                 <TabPageBar v-model:selected={refPageKind.value} onUpdate:selected={onSelect}>
                                     <TabPage name='本月' class={s.tabPage} >
                                         <props.component itemTitle='本月账单' startDate={timeList[0].start.format()}
-                                            endDate={timeList[0].end.format()} items={TestArray.value}></props.component>
+                                            endDate={timeList[0].end.format()} ></props.component>
                                     </TabPage>
                                     <TabPage name='上个月' class={s.tabPage} >
                                         <props.component itemTitle='上个月账单' startDate={timeList[1].start.format()}
-                                            endDate={timeList[1].end.format()} items={TestArray.value}></props.component>
+                                            endDate={timeList[1].end.format()} ></props.component>
                                     </TabPage>
                                     <TabPage name='今年' class={s.tabPage} >
                                         <props.component itemTitle='今年账单' startDate={timeList[2].start.format()}
-                                            endDate={timeList[2].end.format()} items={TestArray.value}></props.component>
+                                            endDate={timeList[2].end.format()}></props.component>
                                     </TabPage>
                                     <TabPage name='其他' class={s.tabPage} >
 
                                         <props.component itemTitle='自定义时间账单' startDate={timeList[2].start.format()}
-                                            endDate={timeList[2].end.format()} items={TestArray.value}></props.component>
+                                            endDate={timeList[2].end.format()}></props.component>
 
                                     </TabPage>
                                 </TabPageBar>
