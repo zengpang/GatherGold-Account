@@ -35,31 +35,30 @@ export const Charts = defineComponent({
   setup: (props, context) => {
     const kind = ref('expenses');
     const data1=ref<Data1>([]);
-    const betterData1=computed<[string,number][]>(()=>{
-      if(!props.startDate||!props.endDate)
-      {
-        return [];
+    const betterData1 = computed<[string, number][]>(() => {
+      if (!props.startDate || !props.endDate) {
+        return []
       }
-      const diff=new Date(props.endDate).getTime()-new Date(props.startDate).getTime();
-      const n=diff/DAY+1;
-      return Array.from({length:n}).map((_,i)=>{
-        const time=new Time(props.startDate+'T00:00:00.000+0800').add(i,'day').getTimestamp();
-        const item=data1.value[0];
-        const amount=item&&new Date(item.happen_at).getTime()=== time?data1.value.shift()!.amount:0;
-        return [new Date(time).toISOString(),amount];
+      const diff = new Date(props.endDate).getTime() - new Date(props.startDate).getTime()
+      const n = diff / DAY + 1
+      return Array.from({ length: n }).map((_, i) => {
+        const time = new Time(props.startDate + 'T00:00:00.000+0800').add(i, 'day').getTimestamp()
+        const item = data1.value[0]
+        const amount = item && new Date(item.happen_at).getTime() === time ? data1.value.shift()!.amount : 0
+        return [new Date(time).toISOString(), amount]
       })
     })
-    const fetchData1=async()=>{
-      const response=await http.get<{groups:Data1;summary:number}>('/items/summary',{
-        happen_after:props.startDate,
-        happen_before:props.endDate,
-        kind:kind.value,
-        group_by:'happen_at',
-        _mock:'itemSummary'
+    const fetchData1 = async () => {
+      const response = await http.get<{ groups: Data1; summary: number }>('/items/summary', {
+        happen_after: props.startDate,
+        happen_before: props.endDate,
+        kind: kind.value,
+        group_by: 'happen_at',
+        _mock: 'itemSummary'
       })
-      data1.value=response.data.groups;
+      data1.value = response.data.groups
     }
-    onMounted(fetchData1);
+    onMounted(fetchData1)
     watch(()=>kind.value,fetchData1);
 
     const data2=ref<Data2>([]);
@@ -74,31 +73,32 @@ export const Charts = defineComponent({
       const total=data2.value.reduce((sum,item)=>sum+item.amount,0);
       return data2.value.map((item)=>({
         ...item,
-        percent:Math.round((item.amount/total)*100);
+        percent:Math.round((item.amount/total)*100)
       }))
     })
 
-    const fetchData2=async()=>{
-      const response=await http.get<{ groups: Data2; summary: number}>('/items/summary',{
-        happen_after:props.startDate,
-        happen_before:props.endDate,
-        kind:kind.value,
-        group_by:'tag_id',
-        _mock:'itemSummary'
+  
+    const fetchData2 = async ()=>{
+      const response = await http.get<{ groups: Data2; summary: number }>('/items/summary', {
+        happen_after: props.startDate,
+        happen_before: props.endDate,
+        kind: kind.value,
+        group_by: 'tag_id',
+        _mock: 'itemSummary'
       })
-      data2.value=response.data.groups;
+      data2.value = response.data.groups
     }
     onMounted(fetchData2);
     watch(()=>kind.value,fetchData2);
-
+    
     return () => (
       <div class={s.wrapper}>
         <FormItem label='类型' type="select" options={[
           { value: 'expenses', text: '支出' },
           { value: 'income', text: '收入' }
         ]} v-model={kind.value} class={s.chartSelect} />
-        <LineChart  />
-        <PieChart />
+        <LineChart data={betterData1.value} />
+        <PieChart/>
         <Bars />
       </div>
     )
