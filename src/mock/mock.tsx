@@ -4,14 +4,15 @@ import { AxiosRequestConfig } from "axios";
 type Mock = (config: AxiosRequestConfig) => [number, any];
 faker.setLocale('zh_CN');
 export const mockItemSummary: Mock = (config) => {
-  const { group_by, kind } = config.params;
+  const { group_by, kind } = config.params
   if (group_by === 'happen_at' && kind === 'expenses') {
     return [
-      200, {
+      200,
+      {
         groups: [
-          { happen_at: '2022-07-18T00:00:00.000+0800', amount: 100 },
-          { happen_at: '2022-07-22T00:00:00.000+0800', amount: 300 },
-          { happen_at: '2022-07-29T00:00:00.000+0800', amount: 200 }
+          { happen_at: '2023-01-03T00:00:00.000+0800', amount: 100 },
+          { happen_at: '2023-01-04T00:00:00.000+0800', amount: 300 },
+          { happen_at: '2023-01-05T00:00:00.000+0800', amount: 200 }
         ],
         summary: 600
       }
@@ -21,9 +22,9 @@ export const mockItemSummary: Mock = (config) => {
       200,
       {
         groups: [
-          { happen_at: '2022-07-08T00:00:00.000+0800', amount: 100 },
-          { happen_at: '2022-07-12T00:00:00.000+0800', amount: 300 },
-          { happen_at: '2022-07-19T00:00:00.000+0800', amount: 200 }
+          { happen_at: '2023-01-03T00:00:00.000+0800', amount: 100 },
+          { happen_at: '2023-01-04T00:00:00.000+0800', amount: 300 },
+          { happen_at: '2023-01-05T00:00:00.000+0800', amount: 200 }
         ],
         summary: 600
       }

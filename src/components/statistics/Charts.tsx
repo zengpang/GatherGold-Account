@@ -60,7 +60,7 @@ export const Charts = defineComponent({
       data1.value = response.data.groups
     }
     onMounted(fetchData1)
-    watch(()=>kind.value,fetchData1);
+    watch(() => kind.value, fetchData1)
 
     const data2=ref<Data2>([]);
     const betterData2=computed<{name:string;value:number}[]>(()=>
@@ -100,7 +100,7 @@ export const Charts = defineComponent({
         ]} v-model={kind.value} class={s.chartSelect} />
         <LineChart data={betterData1.value} />
         <PieChart data={betterData2.value}/>
-        <Bars />
+        <Bars data={betterData3.value}/>
       </div>
     )
   }
