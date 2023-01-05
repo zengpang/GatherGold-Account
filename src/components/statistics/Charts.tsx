@@ -48,6 +48,7 @@ export const Charts = defineComponent({
         return [new Date(time).toISOString(), amount]
       })
     })
+
     const fetchData1 = async () => {
       const response = await http.get<{ groups: Data1; summary: number }>('/items/summary', {
         happen_after: props.startDate,
@@ -98,7 +99,7 @@ export const Charts = defineComponent({
           { value: 'income', text: '收入' }
         ]} v-model={kind.value} class={s.chartSelect} />
         <LineChart data={betterData1.value} />
-        <PieChart/>
+        <PieChart data={betterData2.value}/>
         <Bars />
       </div>
     )
