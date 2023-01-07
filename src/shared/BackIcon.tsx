@@ -15,6 +15,6 @@ export const BackIcon=defineComponent({
             router.back();
            }
         };
-        return ()=><TextIcon textIconName={'exit'}></TextIcon>;
+        return ()=><TextIcon textIconName={'exit'} onClick={onClick}></TextIcon>;
     }
 })

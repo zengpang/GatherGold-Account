@@ -3,6 +3,8 @@ import { defineComponent, onMounted, PropType, reactive, ref, watch } from 'vue'
 import { Paster } from '../../shared/Paster';
 import { ItemList } from '../../shared/ItemList';
 import { http } from '../../shared/Http';
+import { Money } from '../../shared/Money';
+
 export const ItemSummary = defineComponent({
   props: {
     startDate: {
@@ -76,7 +78,7 @@ export const ItemSummary = defineComponent({
               {
                 {
                   header: () => <span class={s.sumTitle}>净收入</span>,
-                  footer: () => <span>{'￥' + itemsBalance.balance}</span>
+                  footer: () => <span>￥<Money value={itemsBalance.balance}></Money></span>
                 }
               }
             </Paster>
@@ -85,7 +87,7 @@ export const ItemSummary = defineComponent({
                 {
                   {
                     header: () => <span class={s.incomeTitle}>收入</span>,
-                    footer: () => <span>{'￥' + itemsBalance.income}</span>
+                    footer: () => <span>￥<Money value={itemsBalance.income}></Money></span>  
                   }
                 }
               </Paster>
@@ -93,7 +95,7 @@ export const ItemSummary = defineComponent({
                 {
                   {
                     header: () => <span class={s.expenseTitle}>支出</span>,
-                    footer: () => <span>{'￥' + itemsBalance.expenses}</span>
+                    footer: () => <span>￥<Money value={itemsBalance.expenses}></Money></span>
                   }
                 }
               </Paster>

@@ -1,5 +1,7 @@
 import s from './Item.module.scss';
 import { defineComponent, PropType } from 'vue';
+import { Money } from './Money';
+
 export const Item = defineComponent({
     props: {
       
@@ -37,8 +39,8 @@ export const Item = defineComponent({
                         
                     </div>
                     <div class={s.price}>
-                    {/* (isincome?"+￥":"-￥")+ */}
-                       <span class={[s.amount,isincome?s.income:'']}>{(isincome?"+￥":"-￥")+props.tagPrice}</span>
+                 
+                       <span class={[s.amount,isincome?s.income:'']}>{(isincome?"+￥":"-￥")}<Money value={props.tagPrice}></Money></span>
                     </div>
                 </div>
             </div>
