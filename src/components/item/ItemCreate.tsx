@@ -29,7 +29,9 @@ export const ItemCreate = defineComponent({
       return http.get<Resources<Tag>>('/tags', {
         kind: kind.value,
         page: page + 1,
-        _mock: 'tagIndex',
+       
+      },{
+        _mock: 'tagIndex'
       });
     });
  

@@ -41,7 +41,7 @@ export const TagInput=defineComponent({
             }
             await http
               .post<Resource<Item>>('/items', formData, {
-                params: { _mock: 'itemCreate' },
+                _mock: 'itemCreate' 
               })
               .catch(onError);
             router.push('/main/home');

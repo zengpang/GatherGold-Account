@@ -4,6 +4,10 @@ import { Paster } from '../../shared/Paster';
 import { ItemList } from '../../shared/ItemList';
 import { http } from '../../shared/Http';
 import { Money } from '../../shared/Money';
+import { GifIcon } from '../../shared/GifIcon';
+import RecordGif from '../../assets/icons/GifIcons/RecordGif.json'
+import { Button } from '../../shared/Button';
+import { RouterLink } from 'vue-router';
 
 export const ItemSummary = defineComponent({
   props: {
@@ -35,6 +39,8 @@ export const ItemSummary = defineComponent({
         happen_after: props.startDate,
         happen_before: props.endDate,
         page: page.value + 1,
+        
+      },{
         _mock: 'itemIndex',
       })
       const { resources, pager } = response.data
@@ -72,7 +78,7 @@ export const ItemSummary = defineComponent({
     })
     return () => (
       <div class={s.wrapper}>
-        {items.value?( <>
+        {(items.value&&items.value.length>0)?( <>
           <div class={s.header}>
             <Paster class={s.sum}>
               {
@@ -109,7 +115,12 @@ export const ItemSummary = defineComponent({
             <ItemList Items={items.value} kind='' class={s.itemList} ItemType='bill'></ItemList>
           </div>
         </>):(
-         <div>记录为空</div>
+         <div class={s.nullPage}>
+           <GifIcon gifJson={RecordGif} class={s.icon}>记录为空</GifIcon>
+           <RouterLink to="/items/create">
+                <Button class={s.button}>开始记账</Button>
+           </RouterLink>
+         </div>
         )
        
         }

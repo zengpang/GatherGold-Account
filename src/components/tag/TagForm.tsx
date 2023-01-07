@@ -43,10 +43,10 @@ export const TagForm = defineComponent({
       if (!hasError(errors)) {
         const promise = await formData.id ?
           http.patch(`/tags/${formData.id}`, formData, {
-            params: { _mock: 'tagEdit' },
+           _mock: 'tagEdit' ,
           }) :
           http.post(`/tags`, formData, {
-            params: { _mock: 'tagCreate' }
+            _mock: 'tagCreate' 
           })
         await promise.catch((error) =>
           onFormError(error, (data) => Object.assign(errors, data.errors))
@@ -59,9 +59,7 @@ export const TagForm = defineComponent({
       if (!props.id) {
         return;
       }
-      const response = await http.get<Resource<Tag>>(`/tags/${props.id}`, {
-        _mock: 'tagShow'
-      });
+      const response = await http.get<Resource<Tag>>(`/tags/${props.id}`, { _mock: 'tagShow' });
       Object.assign(formData, response.data.resource);
     })
     const onDelete = async (options?: { withItems?: boolean }) => {

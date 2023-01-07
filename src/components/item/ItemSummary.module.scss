@@ -10,17 +10,17 @@
             background: linear-gradient(135deg, rgba(248, 206, 155, 1) 0%, rgba(254, 166, 65, 1) 100%);
             margin-right: 5px;
             color: white;
-        
+
             font-size: var(--bigger-font-size);
-            
-            .sumTitle{
+
+            .sumTitle {
                 display: flex;
                 height: 100%;
-                align-items: flex-end;   
+                align-items: flex-end;
             }
-           
+
         }
-         
+
         .incomeAndexpense {
             display: flex;
             flex-direction: column;
@@ -33,9 +33,9 @@
                 background: linear-gradient(180deg, rgba(255, 130, 130, 1) 0%, rgba(255, 97, 97, 1) 100%);
                 margin-bottom: 7px;
                 color: white;
-                font-size:var(--normal-font-size);
-             
-                .incomeTitle{
+                font-size: var(--normal-font-size);
+
+                .incomeTitle {
                     display: flex;
                     height: 100%;
                     align-items: flex-end;
@@ -47,10 +47,10 @@
                 height: 11.97vh;
                 border-radius: 15px;
                 color: white;
-                font-size:var(--normal-font-size);
+                font-size: var(--normal-font-size);
                 background: linear-gradient(180deg, rgba(132, 226, 252, 1) 0%, rgba(74, 201, 236, 1) 100%);
-         
-                .expenseTitle{
+
+                .expenseTitle {
                     display: flex;
                     height: 100%;
                     align-items: flex-end;
@@ -65,6 +65,7 @@
         color: var(--btn-unSelected-color);
         font-weight: 700;
         margin-top: 3.28vh;
+
         .itemNumber {
             color: black;
 
@@ -77,6 +78,27 @@
             width: 90.8vw;
             overflow-y: auto;
             height: 31.4vh;
+
+        }
+    }
+
+    .nullPage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .icon {
+            width: 45.54vh;
+            height: 45.54vh;
+            ;
+        }
+
+        .button {
+            font-size: var(--normal-font-size);
+            width: 57.5vw;
+            height: 6.8vh;
+            border-radius: 15px;
+            background: linear-gradient(135deg, var(--btn-bgColor-end) 0%, var(--btn-bgColor-start) 100%);
 
         }
     }

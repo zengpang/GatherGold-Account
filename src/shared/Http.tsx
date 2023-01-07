@@ -31,10 +31,10 @@ export class Http {
 //mock,测试用
 const mock = (response: AxiosResponse) => {
   //检测运行地址，运行地址如果为本地ip，自动启用mock
-  if (true ||location.hostname !== 'localhost'
+  if (true|| location.hostname !== 'localhost'
     && location.hostname !== '127.0.0.1'
     && location.hostname !== '192.168.2.149') { return false }
-  switch (response.config?.params?._mock) {
+  switch (response.config?._mock) {
     case 'tagIndex':
       [response.status, response.data] = mockTagIndex(response.config)
       return true
