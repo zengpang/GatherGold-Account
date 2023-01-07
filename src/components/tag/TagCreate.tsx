@@ -13,7 +13,7 @@ export const TagCreate =defineComponent({
    setup:(props,context)=>{
       
       return ()=>(
-        <MainLayout iconShow={true} iconPath={'/items/create'}>
+        <MainLayout iconShow={true} >
           {{
               title: () => '标签创建',
               default:()=>(<TagForm class={s.tagForm}  />)

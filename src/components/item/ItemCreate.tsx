@@ -50,7 +50,7 @@ export const ItemCreate = defineComponent({
     })
     return () => (
       
-      <MainLayout iconShow={true}>
+      <MainLayout iconShow={true} iconPath={'/main'}>
         {{
           title: () => '记一笔',
           default: () => (

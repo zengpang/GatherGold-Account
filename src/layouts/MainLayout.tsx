@@ -2,6 +2,7 @@ import { defineComponent, PropType } from "vue";
 import { RouterLink } from "vue-router";
 import { BackIcon } from "../shared/BackIcon";
 import { NavBar } from "../shared/NavBar";
+import { TextIcon } from "../shared/TextIcon";
 
 
 export const MainLayout = defineComponent({
@@ -10,11 +11,12 @@ export const MainLayout = defineComponent({
             type: Boolean as PropType<boolean>,
             default: false
         },
-        iconPath:{
-            type:String as PropType<string>,
-            default: '/main'
-        }
-    },
+        iconPath: {
+            type: String as PropType<string>,
+           
+        },
+        
+    },  
 
     setup: (props, context) => {
         return () => (
@@ -22,7 +24,10 @@ export const MainLayout = defineComponent({
                 <NavBar>{
                     {
                         title: () => context.slots.title?.(),
-                        icon: () => props.iconShow ? <BackIcon></BackIcon> : ""
+                        icon: () => (
+                            props.iconShow && !props.iconPath ? <BackIcon></BackIcon> 
+                            : (props.iconShow && props.iconPath?<RouterLink to={props.iconPath}><TextIcon textIconName={'exit'}></TextIcon></RouterLink>:"")
+                        )
                     }
                 }</NavBar>
                 {context.slots.default?.()}
