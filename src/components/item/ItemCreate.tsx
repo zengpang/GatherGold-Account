@@ -1,11 +1,13 @@
 import s from './ItemCreate.module.scss';
-import { defineComponent, PropType, ref } from 'vue';
+import { defineComponent, PropType, ref,reactive, watch } from 'vue';
 import { MainLayout } from '../../layouts/MainLayout';
 import { TabPageBar, TabPage } from '../../shared/TabPageBar';
 
 import { Button } from '../../shared/Button';
 import {RouterLink} from 'vue-router';
 import { ItemList } from '../../shared/ItemList';
+import { http } from '../../shared/Http';
+import { useTags } from '../../shared/useTags';
 
 
 
@@ -18,11 +20,36 @@ export const ItemCreate = defineComponent({
   },
   
   setup: (props, context) => {
-
     const refKind = ref('支出');
    
-    console.log("刷新页面");
-    
+    const kind=ref("expenses");
+    const formData = reactive({
+      kind: '支出',
+      tags_id: [],
+      amount: 0,
+      happen_at: new Date().toISOString(),
+    });
+    const { tags, hasMore, page, fetchTags } = useTags((page) => {
+      return http.get<Resources<Tag>>('/tags', {
+        kind: kind,
+        page: page + 1,
+        _mock: 'tagIndex',
+      });
+    });
+ 
+    watch(refKind,()=>{
+      if(refKind.value==='支出')
+      {
+        kind.value="expenses";
+       
+      }
+      else
+      {
+        kind.value="income";
+      }
+      fetchTags();
+      console.log("刷新完成");
+    })
     return () => (
       <MainLayout iconShow={true}>
         {{
@@ -32,12 +59,12 @@ export const ItemCreate = defineComponent({
               <TabPageBar v-model:selected={refKind.value}>
                 <TabPage name='支出' class={s.tabPage} >
                   <a class={s.itemTitle}>支出标签</a>
-                  <ItemList  kind="expenses"  ItemType='tag'   class={s.itemList}></ItemList>
+                  <ItemList  kind={kind.value}  ItemType='tag'   class={s.itemList}></ItemList>
                   <RouterLink to={'/tags/create?kind=expenses'} class={s.addTag} ><Button class={s.addTagBtn}>添 加 标 签</Button></RouterLink>
                 </TabPage>
                 <TabPage name='收入' class={s.tabPage}>
                   <a class={s.itemTitle}>收入标签</a>
-                  <ItemList  kind="income" ItemType='tag'  class={s.itemList}></ItemList>
+                  <ItemList  kind={kind.value} ItemType='tag'  class={s.itemList}></ItemList>
                   <RouterLink to={`/tags/create?kind=income`} class={s.addTag} ><Button class={s.addTagBtn}>添 加 标 签</Button></RouterLink>
                 </TabPage>
 

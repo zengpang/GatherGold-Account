@@ -1,5 +1,5 @@
 import s from './ItemList.module.scss';
-import { defineComponent, onUpdated, PropType, reactive, ref } from 'vue';
+import { defineComponent,watch, onUpdated, PropType, reactive, ref } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
 import { Item } from './Item';
 import { TagItem } from './TagItem';
@@ -19,16 +19,12 @@ export const ItemList = defineComponent({
       type: String as PropType<string>,
       required: true,
     },
+    
     selected: Number,
   },
   emits: ['update:selected'],
   setup(props, context) {
-    const formData=reactive({
-      kind:'支出',
-      tags_id:[],
-      amount:0,
-      happen_at: new Date().toISOString(),
-    });
+    
     const { tags, hasMore, page, fetchTags } = useTags((page) => {
       return http.get<Resources<Tag>>('/tags', {
         kind: props.kind,
@@ -36,6 +32,14 @@ export const ItemList = defineComponent({
         _mock: 'tagIndex',
       });
     });
+   
+    const formData=reactive({
+      kind:'支出',
+      tags_id:[],
+      amount:0,
+      happen_at: new Date().toISOString(),
+    });
+ 
     
     const ItemType = props.ItemType;
     //标签点击事件
@@ -83,6 +87,7 @@ export const ItemList = defineComponent({
           </div>
         };
         case "tag": {
+         
           return <div class={s.wrapper} onTouchmove={onTouchMove}>
             {tags.value.map((item, index) => {
               return (<TagItem onClick={() => onSelect(item)}   onTouchstart={(e)=>onTouchStart(e, item)}

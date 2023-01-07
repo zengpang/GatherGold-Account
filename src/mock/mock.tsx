@@ -231,12 +231,14 @@ export const mockTagIndex: Mock = (config) => {
   })
   switch (true) {
     case (kind === 'expenses' && (!page || page === 1)): {
+      console.log('加载expenses');
       return [200, createBody(25)];
     };
     case (kind === 'expenses' && page === 2): {
       return [200, createBody(1)];
     };
     case (kind === 'income' && (!page || page === 1)): {
+      console.log('加载income');
       return [200, createBody(25)];
     };
     default: {

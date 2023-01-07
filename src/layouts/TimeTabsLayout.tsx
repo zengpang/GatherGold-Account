@@ -39,7 +39,7 @@ export const TimeTabsLayout = defineComponent({
     },
     setup: (props, context) => {
 
-        const refPageKind = ref('本月');
+        const refSelected = ref('本月');
         const time = new Time();
         const tempTime = reactive({
             start: new Time().format(),
@@ -82,7 +82,7 @@ export const TimeTabsLayout = defineComponent({
                         default: () => (
 
                             <div class={s.timeTabsLayout}>
-                                {props.hideThisYear ? (<TabPageBar v-model:selected={refPageKind.value} onUpdate:selected={onSelect}>
+                                {props.hideThisYear ? (<TabPageBar v-model:selected={refSelected.value} onUpdate:selected={onSelect}>
                                     <TabPage name='本月' class={s.tabPage} >
                                         <props.component itemTitle='本月账单' startDate={timeList[0].start.format()}
                                             endDate={timeList[0].end.format()} ></props.component>
@@ -99,7 +99,7 @@ export const TimeTabsLayout = defineComponent({
 
                                     </TabPage>
                                 </TabPageBar>) : (
-                                    <TabPageBar v-model:selected={refPageKind.value} onUpdate:selected={onSelect}>
+                                    <TabPageBar  v-model:selected={refSelected.value} onUpdate:selected={onSelect}>
                                         <TabPage name='本月' class={s.tabPage} >
                                             <props.component itemTitle='本月账单' startDate={timeList[0].start.format()}
                                                 endDate={timeList[0].end.format()} ></props.component>
