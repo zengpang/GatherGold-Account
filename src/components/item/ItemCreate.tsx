@@ -31,7 +31,7 @@ export const ItemCreate = defineComponent({
     });
     const { tags, hasMore, page, fetchTags } = useTags((page) => {
       return http.get<Resources<Tag>>('/tags', {
-        kind: kind,
+        kind: kind.value,
         page: page + 1,
         _mock: 'tagIndex',
       });
@@ -47,10 +47,14 @@ export const ItemCreate = defineComponent({
       {
         kind.value="income";
       }
+      tags.value=[];
+      hasMore.value = false;
+      page.value = 0;
       fetchTags();
       console.log("刷新完成");
     })
     return () => (
+      
       <MainLayout iconShow={true}>
         {{
           title: () => '记一笔',
@@ -59,12 +63,12 @@ export const ItemCreate = defineComponent({
               <TabPageBar v-model:selected={refKind.value}>
                 <TabPage name='支出' class={s.tabPage} >
                   <a class={s.itemTitle}>支出标签</a>
-                  <ItemList  kind={kind.value}  ItemType='tag'   class={s.itemList}></ItemList>
+                  <ItemList  kind={kind.value}  ItemType='tag' Items={tags.value} hasMore={hasMore.value} page={page.value} fetchTags={fetchTags}  class={s.itemList}></ItemList>
                   <RouterLink to={'/tags/create?kind=expenses'} class={s.addTag} ><Button class={s.addTagBtn}>添 加 标 签</Button></RouterLink>
                 </TabPage>
                 <TabPage name='收入' class={s.tabPage}>
                   <a class={s.itemTitle}>收入标签</a>
-                  <ItemList  kind={kind.value} ItemType='tag'  class={s.itemList}></ItemList>
+                  <ItemList  kind={kind.value} ItemType='tag' Items={tags.value} hasMore={hasMore.value} page={page.value} fetchTags={fetchTags}    class={s.itemList}></ItemList>
                   <RouterLink to={`/tags/create?kind=income`} class={s.addTag} ><Button class={s.addTagBtn}>添 加 标 签</Button></RouterLink>
                 </TabPage>
 

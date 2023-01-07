@@ -235,6 +235,7 @@ export const mockTagIndex: Mock = (config) => {
       return [200, createBody(25)];
     };
     case (kind === 'expenses' && page === 2): {
+      console.log('加载更多');
       return [200, createBody(1)];
     };
     case (kind === 'income' && (!page || page === 1)): {
