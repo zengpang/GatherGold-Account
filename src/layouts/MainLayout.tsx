@@ -14,6 +14,7 @@ export const MainLayout = defineComponent({
             default: '/main'
         }
     },
+    
     setup: (props, context) => {
         return () => (
             <div>

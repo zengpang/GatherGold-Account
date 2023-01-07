@@ -8,10 +8,10 @@ import { Time } from '../../shared/time';
 import { http } from '../../shared/Http';
 
 const DAY=24*3600*1000;
-type Data1Item={happen_at:string;amount:number};
-type Data1=Data1Item[];
-type Data2Item={tag_id:number;tag:Tag;amount:number};
-type Data2=Data2Item[];
+type Data1Item = { happen_at: string; amount: number };
+type Data1 = Data1Item[];
+type Data2Item = { tag_id: number; tag: Tag; amount: number };
+type Data2 = Data2Item[];
 export const Charts = defineComponent({
   props: {
     startDate: {
@@ -57,6 +57,8 @@ export const Charts = defineComponent({
         group_by: 'happen_at',
         _mock: 'itemSummary'
       })
+      console.log(props.startDate);
+      console.log(response.data.groups[0]);
       data1.value = response.data.groups
     }
     onMounted(fetchData1)

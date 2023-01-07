@@ -8,9 +8,6 @@ import {RouterLink} from 'vue-router';
 import { ItemList } from '../../shared/ItemList';
 import { http } from '../../shared/Http';
 import { useTags } from '../../shared/useTags';
-
-
-
 export const ItemCreate = defineComponent({
   props: {
     name: {
@@ -21,7 +18,6 @@ export const ItemCreate = defineComponent({
   
   setup: (props, context) => {
     const refKind = ref('支出');
-   
     const kind=ref("expenses");
     const formData = reactive({
       kind: '支出',
@@ -41,7 +37,6 @@ export const ItemCreate = defineComponent({
       if(refKind.value==='支出')
       {
         kind.value="expenses";
-       
       }
       else
       {
@@ -51,7 +46,7 @@ export const ItemCreate = defineComponent({
       hasMore.value = false;
       page.value = 0;
       fetchTags();
-      console.log("刷新完成");
+ 
     })
     return () => (
       
