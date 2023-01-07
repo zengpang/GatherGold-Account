@@ -94,7 +94,13 @@ export const ItemList = defineComponent({
             {Items!.map((item, index) => {
               return (<Item tagIcon={item.tags![0].sign} tagName={item.tags![0].name} tagPrice={item.amount} tagTime={item.happen_at} class={s.item}></Item>)
             })}
-            <div class={s.footer}>没有更多</div>
+            <div>
+              {
+                hasMore ?
+                  <div class={[s.footer, s.loadMove]} onClick={fetchTags}  >加载更多</div> :
+                  <div class={s.footer}>没有更多</div>
+              }
+            </div>
           </div>
         };
         case "tag": {
