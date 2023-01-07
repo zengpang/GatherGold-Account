@@ -16,6 +16,7 @@ import { HomePage } from "../components/main/HomePage";
 import { StatisticsPage } from "../components/main/StatisticsPage";
 import { LoginPage } from "../components/main/LoginPage";
 import { TagInput } from "../components/tag/TagInput";
+import { ComingSoon } from "../shared/ComingSoon";
 
 export const routes: RouteRecordRaw[] = [
   { path: '/', redirect: '/welcome' },
@@ -40,9 +41,10 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/main', component: MainPage,
     children:[
-      { path: '/main', redirect: '/main/home' },
+      {path: '/main', redirect: '/main/home' },
       {path:'home',name:"HomePage",component:HomePage},
       {path:'statistics',name:"StatisticsPage",component:StatisticsPage},
+      {path:'export',name:'ExportPage',component:ComingSoon},
       {path:'login',name:"LoginPage",component:LoginPage}
     ]
 
