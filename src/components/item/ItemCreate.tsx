@@ -19,12 +19,7 @@ export const ItemCreate = defineComponent({
   setup: (props, context) => {
     const refKind = ref('支出');
     const kind=ref("expenses");
-    const formData = reactive({
-      kind: '支出',
-      tags_id: [],
-      amount: 0,
-      happen_at: new Date().toISOString(),
-    });
+  
     const { tags, hasMore, page, fetchTags } = useTags((page) => {
       return http.get<Resources<Tag>>('/tags', {
         kind: kind.value,

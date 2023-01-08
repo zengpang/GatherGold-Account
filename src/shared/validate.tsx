@@ -1,12 +1,13 @@
 interface FData{
-    [k:string]:string | number | null | undefined |  FData
+    [k:string]:JSONValue
 }
 type Rule<T>={
     key:keyof T
     message:string
 }&(
     {type:'required'}|
-    {type:'pattern',regex:RegExp}
+    {type:'pattern',regex:RegExp}|
+    { type: 'notEqual', value: JSONValue }
 )
 type Rules<T>=Rule<T>[];
 export type{Rules,Rule,FData};

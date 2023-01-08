@@ -44,12 +44,7 @@ export const ItemList = defineComponent({
     //   });
     // });
     const ItemType = props.ItemType;
-    const formData = reactive({
-      kind: '支出',
-      tags_id: [],
-      amount: 0,
-      happen_at: new Date().toISOString(),
-    });
+   
     //标签点击事件
     const onSelect = (tag: Tag) => {
       context.emit('update:selected', tag.id);
