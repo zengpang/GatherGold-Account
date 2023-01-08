@@ -49,7 +49,7 @@ export const ItemList = defineComponent({
     const onSelect = (tag: Tag) => {
       context.emit('update:selected', tag.id);
       console.log("点击触发");
-      router.push(`/tags/${tag.id}/input?kind=${props.kind}?tagname=${tag.name}?tagicon=${tag.sign}&return_to=${router.currentRoute.value.fullPath}`)
+      router.push(`/tags/${tag.id}/input?kind=${props.kind}`)
     };
     const timer = ref<number>()
     const currentTag = ref<HTMLDivElement>()

@@ -8,7 +8,7 @@ import s from './TagInput.module.scss';
 import { AxiosError } from 'axios';
 import { Dialog } from 'vant';
 import { http } from '../../shared/Http';
-import { validate } from '../../shared/validate';
+import { hasError, validate } from '../../shared/validate';
 export const TagInput = defineComponent({
     setup: (props, context) => {
         const route = useRoute();
@@ -21,22 +21,22 @@ export const TagInput = defineComponent({
         //     amount:0,
         //     happen_at:new Date().toISOString()
         // });
-        // const submitData = reactive<Partial<Item>>({
-        //     kind: route.query.kind!.toString() as ('expenses' | 'income'),
-        //     tag_ids: [],
-        //     amount: 0,
-        //     happen_at: new Date().toISOString()
-        // })
+        const submitData = reactive<Partial<Item>>({
+            kind: route.query.kind!.toString() as ('expenses' | 'income'),
+            tag_ids: [numberId],
+            amount: 0,
+            happen_at: new Date().toISOString()
+        })
         const formData = reactive({
             id: undefined,
-            tag_ids: [],
+            // tag_ids: [],
             name: '',
             sign: '',
             kind: route.query.kind!.toString() as ('expenses' | 'income'),
-            amount: 0,
-            happen_at: new Date().toISOString()
+            // amount: 0,
+            // happen_at: new Date().toISOString()
         });
-        const errors = reactive<FormErrors<typeof formData>>({ kind: [], tag_ids: [], amount: [], happen_at: [] })
+        const errors = reactive<FormErrors<typeof submitData>>({ kind: [], tag_ids: [], amount: [], happen_at: [] })
         const router = useRouter()
         const onError = (error: AxiosError<ResourceError>) => {
             if (error.response?.status === 422) {
@@ -50,15 +50,24 @@ export const TagInput = defineComponent({
         };
         const onSubmit = async () => {
             Object.assign(errors, { kind: [], tag_ids: [], amount: [], happen_at: [] });
-            Object.assign(errors, validate(formData, [
+            Object.assign(errors, validate(submitData, [
                 { key: 'kind', type: 'required', message: '类型必填' },
                 { key: 'tag_ids', type: 'required', message: '标签必填' },
                 { key: 'amount', type: 'required', message: '金额必填' },
                 { key: 'amount', type: 'notEqual', value: 0, message: '金额不能为零' },
                 { key: 'happen_at', type: 'required', message: '时间必填' },
               ]))
+            console.log(submitData);
+            if(hasError(errors))
+            {
+                Dialog.alert({
+                    title:'出错',
+                    message:Object.values(errors).filter(i=>i.length>0).join('\n')
+                })
+                return;
+            }
             await http
-                .post<Resource<Item>>('/items', formData, {
+                .post<Resource<Item>>('/items', submitData, {
                     _mock: 'itemCreate'
                 })
                 .catch(onError);
@@ -80,8 +89,8 @@ export const TagInput = defineComponent({
                         <TagItem tagName={formData.name} tagIcon={formData.sign} class={s.titleTag}></TagItem>
                         <InputPad
                             class={s.inputPad}
-                            v-model:happenAt={formData.happen_at}
-                            v-model:amount={formData.amount}
+                            v-model:happenAt={submitData.happen_at}
+                            v-model:amount={submitData.amount}
                             onSubmit={onSubmit}
                         ></InputPad>
                     </div>
