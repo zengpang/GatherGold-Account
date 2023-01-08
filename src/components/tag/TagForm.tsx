@@ -24,7 +24,7 @@ export const TagForm = defineComponent({
       id: undefined,
       name: '',
       sign: '',
-      kind: route.query.kind!.toString()
+      kind: route.query.kind!.toString() as ('expenses' | 'income')
     })
     const errors = reactive<{ [k in keyof typeof formData]?: string[] }>({})
     const router = useRouter();
@@ -43,10 +43,10 @@ export const TagForm = defineComponent({
       if (!hasError(errors)) {
         const promise = await formData.id ?
           http.patch(`/tags/${formData.id}`, formData, {
-           _mock: 'tagEdit' ,
+            _mock: 'tagEdit',
           }) :
           http.post(`/tags`, formData, {
-            _mock: 'tagCreate' 
+            _mock: 'tagCreate'
           })
         await promise.catch((error) =>
           onFormError(error, (data) => Object.assign(errors, data.errors))
@@ -62,13 +62,20 @@ export const TagForm = defineComponent({
       const response = await http.get<Resource<Tag>>(`/tags/${props.id}`, { _mock: 'tagShow' });
       Object.assign(formData, response.data.resource);
     })
+    const onError = () => {
+      Dialog.alert({ title: '提示', message: '删除失败' })
+    }
     const onDelete = async (options?: { withItems?: boolean }) => {
       await Dialog.confirm({
         title: '确认',
-        message: '你真的要删除吗？',
+        message: '你真的要删除吗?'
       })
-
-      router.back()
+      await http
+        .delete(`/tags/${props.id}`, {
+          withItems: options?.withItems ? 'true' : 'false',
+        })
+        .catch(onError)
+      router.back();
     }
     return () => (
       <Form onSubmit={onSubmit} >
