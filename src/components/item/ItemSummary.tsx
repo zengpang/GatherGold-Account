@@ -110,7 +110,7 @@ export const ItemSummary = defineComponent({
           </div>
           <div class={s.footerTitle}>
             <span>{props.itemTitle}</span>
-            <span>{"共计"}<span class={s.itemNumber}>{props.itemTitle?.length}</span>{"张"}</span>
+            <span>{"共计"}<span class={s.itemNumber}>{items.value.length}</span>{"张"}</span>
           </div>
           <div class={s.footer}>
             <ItemList Items={items.value} kind='' class={s.itemList} ItemType='bill'></ItemList>
