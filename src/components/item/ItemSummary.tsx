@@ -9,6 +9,7 @@ import RecordGif from '../../assets/icons/GifIcons/RecordGif.json'
 import { Button } from '../../shared/Button';
 import { RouterLink } from 'vue-router';
 import { useItemStore } from '../../stores/useItemStore';
+import { useAfterMe } from '../../hooks/useAfterMe';
 
 export const ItemSummary = defineComponent({
   props: {
@@ -35,57 +36,52 @@ export const ItemSummary = defineComponent({
       return ()=><div>请先选择时间范围</div>
     }
     const itemStore = useItemStore(['items',props.startDate,props.endDate]);
-   
-    const hasMore = ref(false);
-    const page = ref(0);
-    //更新记账项
-    const fetchItems = async () => {
-      if(!props.startDate || !props.endDate){ return }
-      const response = await http.get<Resources<Item>>('/items', {
-        happen_after: props.startDate,
-        happen_before: props.endDate,
-        page: page.value + 1,
-        
-      },{
-        _mock: 'itemIndex',
-        _autoLoading: true,
-      })
-      const { resources, pager } = response.data
-      items.value?.push(...resources)
-      hasMore.value = (pager.page - 1) * pager.per_page + resources.length < pager.count
-      page.value += 1
+    useAfterMe(()=>itemStore.fetchItems(props.startDate,props.endDate));
+    watch(
+      ()=>[props.startDate,props.endDate],
+      ()=>{
+        itemStore.$reset();
+        itemStore.fetchItems(props.startDate, props.endDate);
+      }
+    )
+    
+    const itemsBalance=reactive({
+      expenses:0,
+      income:0,
+      balance:0
+    });
+    const fetchItemsBalance=async()=>{
+      if(!props.startDate||!props.endDate)
+      {
+        return;
+      }
+      const response=await http.get(
+        '/items/balance',
+        {
+          happen_after:props.startDate,
+          happen_before:props.endDate
+        },
+        {
+          _mock:'itemIndexBalance'
+        }
+      )
+      Object.assign(itemsBalance,response.data);
     }
-    //初始更新
-    onMounted(fetchItems);
-    watch(() => [props.startDate, props.endDate], () => {
-      items.value = [];
-      hasMore.value = false;
-      page.value = 0;
-      fetchItems();
-    })
-    const itemsBalance = reactive({
-      expenses: 0, income: 0, balance: 0
-    })
-    const fetchItemsBalance = async () => {
-      if (!props.startDate || !props.endDate) { return }
-      const response = await http.get('/items/balance', {
-        happen_after: props.startDate,
-        happen_before: props.endDate,
-        page: page.value + 1,
-        _mock: 'itemIndexBalance'
-      })
-      Object.assign(itemsBalance, response.data);
-    }
-    onMounted(fetchItemsBalance);
-    watch(() => [props.startDate, props.endDate], () => {
-      Object.assign(itemsBalance, {
-        expenses: 0, income: 0, balance: 0
-      })
-      fetchItemsBalance();
-    })
+    useAfterMe(fetchItemsBalance);
+    watch(
+      ()=>[props.startDate,props.endDate],
+      ()=>{
+        Object.assign(itemsBalance,{
+          expenses: 0,
+          income: 0,
+          balance: 0
+        })
+        fetchItemsBalance();
+      }
+    )
     return () => (
       <div class={s.wrapper}>
-        {(items.value&&items.value.length>0)?( <>
+        {(itemStore.items&&itemStore.items.length>0)?( <>
           <div class={s.header}>
             <Paster class={s.sum}>
               {
@@ -116,10 +112,10 @@ export const ItemSummary = defineComponent({
           </div>
           <div class={s.footerTitle}>
             <span>{props.itemTitle}</span>
-            <span>{"共计"}<span class={s.itemNumber}>{items.value.length}</span>{"张"}</span>
+            <span>{"共计"}<span class={s.itemNumber}>{itemStore.items.length}</span>{"张"}</span>
           </div>
           <div class={s.footer}>
-            <ItemList Items={items.value} kind='' class={s.itemList} ItemType='bill'></ItemList>
+            <ItemList Items={itemStore.items} kind='' class={s.itemList} ItemType='bill'></ItemList>
           </div>
         </>):(
          <div class={s.nullPage}>

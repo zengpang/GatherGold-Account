@@ -5,7 +5,14 @@ import { createRouter } from 'vue-router';
 import { history } from './shared/history';
 
 import { fetchMe, mePromise } from './shared/me';
+import { createPinia } from 'pinia';
 const router = createRouter({ history, routes });
+const pinia=createPinia();
+const app = createApp(App);
+app.use(router);
+app.use(pinia);
+app.mount('#app');
+
 fetchMe();
 //路径白名单（键值对）
 const whiteList: Record<string, 'exact' | 'startsWith'> = {
@@ -33,7 +40,5 @@ router.beforeEach((to, from) => {
         () => '/main/login?return_to=' + to.path
     )
 })
-const app = createApp(App);
-app.use(router);
-app.mount('#app');
+
 
