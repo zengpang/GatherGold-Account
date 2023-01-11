@@ -8,6 +8,7 @@ import { GifIcon } from '../../shared/GifIcon';
 import RecordGif from '../../assets/icons/GifIcons/RecordGif.json'
 import { Button } from '../../shared/Button';
 import { RouterLink } from 'vue-router';
+import { useItemStore } from '../../stores/useItemStore';
 
 export const ItemSummary = defineComponent({
   props: {
@@ -29,7 +30,12 @@ export const ItemSummary = defineComponent({
     // }
   },
   setup: (props, context) => {
-    const items = ref<Item[]>([]);
+    if(!props.startDate||!props.endDate)
+    {
+      return ()=><div>请先选择时间范围</div>
+    }
+    const itemStore = useItemStore(['items',props.startDate,props.endDate]);
+   
     const hasMore = ref(false);
     const page = ref(0);
     //更新记账项
