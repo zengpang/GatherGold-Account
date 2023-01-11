@@ -127,8 +127,6 @@ export const ItemSummary = defineComponent({
         )
        
         }
-       
-
       </div>
     )
   }
