@@ -7,20 +7,21 @@ import { Bars } from './Bars';
 import { Time } from '../../shared/time';
 import { http } from '../../shared/Http';
 
-const DAY = 24 * 3600 * 1000;
-type Data1Item = { happen_at: string; amount: number };
-type Data1 = Data1Item[];
-type Data2Item = { tag_id: number; tag: Tag; amount: number };
-type Data2 = Data2Item[];
+const DAY = 24 * 3600 * 1000
+
+type Data1Item = { happen_at: string; amount: number }
+type Data1 = Data1Item[]
+type Data2Item = { tag_id: number; tag: Tag; amount: number }
+type Data2 = Data2Item[]
 export const Charts = defineComponent({
   props: {
     startDate: {
       type: String as PropType<string>,
-      required: true
+      required: false
     },
     endDate: {
       type: String as PropType<string>,
-      required: true
+      required: false
     },
     itemTitle: {
       type: String as PropType<string>,
@@ -44,21 +45,25 @@ export const Charts = defineComponent({
       return Array.from({ length: n }).map((_, i) => {
         const time = new Time(props.startDate + 'T00:00:00.000+0800').add(i, 'day').getTimestamp()
         const item = data1.value[0]
-        const amount = item && new Date(item.happen_at).getTime() === time ? data1.value.shift()!.amount : 0
+        const amount = item && new Date(item.happen_at+'T00:00:00.000+0800').getTime() === time ? data1.value.shift()!.amount : 0
         return [new Date(time).toISOString(), amount]
       })
     })
 
     const fetchData1 = async () => {
-      const response = await http.get<{ groups: Data1; summary: number }>('/items/summary', {
-        happen_after: props.startDate,
-        happen_before: props.endDate,
-        kind: kind.value,
-        group_by: 'happen_at',
-      }, {
-        _mock: 'itemSummary',
-        _autoLoading: true,
-      })
+      const response = await http.get<{ groups: Data1; summary: number }>(
+        '/items/summary',
+        {
+          happen_after: props.startDate,
+          happen_before: props.endDate,
+          kind: kind.value,
+          group_by: 'happen_at'
+        },
+        {
+          _mock: 'itemSummary',
+          _autoLoading: true
+        }
+      )
       data1.value = response.data.groups
     }
     onMounted(fetchData1)
@@ -81,20 +86,22 @@ export const Charts = defineComponent({
     })
 
     const fetchData2 = async () => {
-      const response = await http.get<{ groups: Data2; summary: number }>('/items/summary', {
-        happen_after: props.startDate,
-        happen_before: props.endDate,
-        kind: kind.value,
-        group_by: 'tag_id',
-      }, {
-        _mock: 'itemSummary'
-      })
+      const response = await http.get<{ groups: Data2; summary: number }>(
+        '/items/summary',
+        {
+          happen_after: props.startDate,
+          happen_before: props.endDate,
+          kind: kind.value,
+          group_by: 'tag_id'
+        },
+        {
+          _mock: 'itemSummary'
+        }
+      )
       data2.value = response.data.groups
     }
     onMounted(fetchData2)
     watch(() => kind.value, fetchData2)
-
-
     return () => (
       <div class={s.wrapper}>
         <FormItem label='类型' type="select" options={[

@@ -27,7 +27,7 @@ const echartsOption = {
   },
   yAxis: {
     show: true,
-    type:'value',
+    type: 'value',
     splitLine: {
       show: true,
       lineStyle: {
@@ -47,8 +47,9 @@ export const LineChart = defineComponent({
     },
   },
   setup: (props, context) => {
-    const refDiv = ref<HTMLDivElement>();
-    let chart:echarts.ECharts|undefined=undefined;
+    const refDiv = ref<HTMLDivElement>()
+    let chart: echarts.ECharts | undefined = undefined
+
     onMounted(() => {
       if (refDiv.value === undefined) {
         return

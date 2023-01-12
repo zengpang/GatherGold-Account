@@ -15,11 +15,11 @@ export const ItemSummary = defineComponent({
   props: {
     startDate: {
       type: String as PropType<string>,
-      required: true
+      required: false
     },
     endDate: {
       type: String as PropType<string>,
-      required: true
+      required: false
     },
     itemTitle: {
       type: String as PropType<string>,

@@ -11,12 +11,12 @@ const demo = defineComponent({
     props: {
         startDate: {
             type: String as PropType<string>,
-            required: true
-        },
-        endDate: {
+            required: false
+          },
+          endDate: {
             type: String as PropType<string>,
-            required: true
-        },
+            required: false
+          },
         itemTitle: {
             type: String as PropType<string>,
             required: false,
@@ -45,10 +45,10 @@ export const TimeTabsLayout = defineComponent({
             start: new Time().format(),
             end: new Time().format()
         })
-        const customTime = reactive({
-            start: new Time().format(),
-            end: new Time().format()
-        });
+        const customTime = reactive<{
+            start?: string
+            end?: string
+        }>({})
         const timeList = [
             {
                 start: time.firstDayOfMonth(),
@@ -63,7 +63,7 @@ export const TimeTabsLayout = defineComponent({
                 end: time.lastDayOfYear()
             }
         ]
-        const refOverlayVisible = ref(false);
+        const refOverlayVisible = ref(false)
         const onSubmitCustomTime = (e: Event) => {
             e.preventDefault();
             refOverlayVisible.value = false;
@@ -80,7 +80,6 @@ export const TimeTabsLayout = defineComponent({
                     {
                         title: () => '首页',
                         default: () => (
-
                             <div class={s.timeTabsLayout}>
                                 {props.hideThisYear ? (<TabPageBar v-model:selected={refSelected.value} onUpdate:selected={onSelect}>
                                     <TabPage name='本月' class={s.tabPage} >
@@ -94,12 +93,11 @@ export const TimeTabsLayout = defineComponent({
 
                                     <TabPage name='其他' class={s.tabPage} >
 
-                                        <props.component itemTitle='自定义时间账单' startDate={timeList[2].start.format()}
-                                            endDate={timeList[2].end.format()}></props.component>
+                                        <props.component itemTitle='自定义时间账单' startDate={customTime.start} endDate={customTime.end}></props.component>
 
                                     </TabPage>
                                 </TabPageBar>) : (
-                                    <TabPageBar  v-model:selected={refSelected.value} onUpdate:selected={onSelect}>
+                                    <TabPageBar v-model:selected={refSelected.value} onUpdate:selected={onSelect}>
                                         <TabPage name='本月' class={s.tabPage} >
                                             <props.component itemTitle='本月账单' startDate={timeList[0].start.format()}
                                                 endDate={timeList[0].end.format()} ></props.component>
@@ -113,10 +111,7 @@ export const TimeTabsLayout = defineComponent({
                                                 endDate={timeList[2].end.format()}></props.component>
                                         </TabPage>
                                         <TabPage name='其他' class={s.tabPage} >
-
-                                            <props.component itemTitle='自定义时间账单' startDate={timeList[2].start.format()}
-                                                endDate={timeList[2].end.format()}></props.component>
-
+                                        <props.component itemTitle='自定义时间账单' startDate={customTime.start} endDate={customTime.end}></props.component>
                                         </TabPage>
                                     </TabPageBar>
                                 )}
@@ -128,8 +123,8 @@ export const TimeTabsLayout = defineComponent({
                                         </header>
                                         <main>
                                             <Form onSubmit={onSubmitCustomTime}>
-                                                <FormItem label='开始时间' v-model={customTime.start} type='date' />
-                                                <FormItem label='结束时间' v-model={customTime.end} type='date' />
+                                                <FormItem label='开始时间' v-model={tempTime.start} type='date' />
+                                                <FormItem label='结束时间' v-model={tempTime.end} type='date' />
                                                 <FormItem>
                                                     <div class={s.actions}>
                                                         <button type="button" onClick={() => refOverlayVisible.value = false} class={s.cancelBtn}>取消</button>
