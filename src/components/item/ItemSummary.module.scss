@@ -92,7 +92,10 @@
             height: 45.54vh;
            
         }
-
+        .hint{
+            font-size: var(--mini-font-size);
+            color:var(--hint-font-color)
+        }
         .button {
             font-size: var(--normal-font-size);
             width: 57.5vw;

@@ -120,6 +120,7 @@ export const ItemSummary = defineComponent({
         </>):(
          <div class={s.nullPage}>
            <GifIcon gifJson={RecordGif} class={s.icon}>记录为空</GifIcon>
+           <p class={s.hint}>暂无数据,请前往记账页面</p>
            <RouterLink to="/items/create">
                 <Button class={s.button}>开始记账</Button>
            </RouterLink>
