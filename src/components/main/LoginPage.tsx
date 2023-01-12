@@ -79,7 +79,7 @@ export const LoginPage = defineComponent({
         const returnTo = route.query.return_to?.toString()
         refreshMe()
         meStore.refreshMe();
-        router.push(returnTo || '/')
+        router.push(returnTo || '/main/home');
       }
     }
     const onError = (error: any) => {
