@@ -13,9 +13,11 @@ import { http } from '../../shared/Http';
 import { mePromise, refreshMe } from '../../shared/me';
 import { Dialog } from 'vant';
 import { TextIcon } from '../../shared/TextIcon';
+import { useMeStore } from '../../stores/useMeStore';
 
 export const LoginPage = defineComponent({
   setup: (props, context) => {
+    const meStore = useMeStore();
     const formData = reactive({
       email: '',
       code: ''
@@ -25,9 +27,13 @@ export const LoginPage = defineComponent({
       code: []
     })
     const refValidationCode = ref<any>();
+    const { ref: refDisabled, toggle, on: disabled, off: enable } = useBool(false);
+    const router = useRouter();
+    const route = useRoute();
     const me = ref<User>()
     onMounted(async () => {
-      const response = await mePromise
+
+      const response = await meStore.mePromise;
       me.value = response?.data.resource
     })
     const onSignOut = async () => {
@@ -37,9 +43,7 @@ export const LoginPage = defineComponent({
       })
       localStorage.removeItem('jwt')
     }
-    const { ref: refDisabled, toggle, on: disabled, off: enable } = useBool(false);
-    const router = useRouter();
-    const route = useRoute();
+
     const onSubmit = async (e: Event) => {
       e.preventDefault()
       Object.assign(errors, {
@@ -58,6 +62,7 @@ export const LoginPage = defineComponent({
         // router.push('/sign_in?return_to='+ encodeURIComponent(route.fullPath))
         const returnTo = route.query.return_to?.toString()
         refreshMe()
+        meStore.refreshMe();
         router.push(returnTo || '/')
       }
     }
@@ -79,62 +84,50 @@ export const LoginPage = defineComponent({
       refValidationCode.value.startCount();
     }
     return () => (
-      <>
-        {me.value ? (
-        <MainLayout iconShow={false}>
-          {
-            {
-              title: () => '个人中心',
-              default:()=>(
-                <div class={s.wrapper}>
-                   <div class={s.logo}>
-                      <TextIcon textIconName='user'  class={s.headIcon}>
- 
-                      </TextIcon>
-                   </div>
-                   <div class={s.userInfo}>
-                      <p class={s.email}>{me.value?.email}</p>
-                      <p class={s.welcome}>欢迎用户</p>
-                   </div>
-                   <div class={s.footer}>
-                   <Button class={s.signOutBtn} onClick={onSignOut}>退出登录</Button>                   
-                   </div>
-                </div>
-              )
-            }
-          }
-        </MainLayout>
-        ) : (
-          <MainLayout iconShow={false}>{
-            {
-              title: () => '登录',
+      <MainLayout iconShow={false}>{
+        {
+          title: () => me.value ? '个人中心' : '登录',
 
-              default: () => (
-                <div class={s.wrapper}>
-                  <div class={s.logo}>
-                    <GifIcon gifJson={LoadGif} class={s.icon} />
-                    <h1 class={s.appName}>欢迎登录</h1>
-                  </div>
-                  <Form onSubmit={onSubmit}>
-                    <FormItem label="邮箱地址" type="text"
-                      placeholder='请输入邮箱，然后点击发送验证码'
-                      v-model={formData.email} error={errors.email?.[0]} />
-                    <FormItem ref={refValidationCode} label="验证码" type="validationCode"
-                      placeholder='请输入六位数字'
-                      countFrom={60}
-                      disabled={refDisabled.value}
-                      onClick={onClickSendValidationCode}
-                      v-model={formData.code} error={errors.code?.[0]} />
-                    <FormItem style={{ paddingTop: '2.15vh' }}>
-                      <Button type="submit" class={s.loginBtn}>登 录</Button>
-                    </FormItem>
-                  </Form>
-                </div>
-              )
-            }
-          }</MainLayout>)
+          default: () => 
+            me.value ? (<div class={s.wrapper}>
+              <div class={s.logo}>
+                <TextIcon textIconName='user' class={s.headIcon}>
+
+                </TextIcon>
+              </div>
+              <div class={s.userInfo}>
+                <p class={s.email}>{me.value?.email}</p>
+                <p class={s.welcome}>欢迎用户</p>
+              </div>
+              <div class={s.footer}>
+                <Button class={s.signOutBtn} onClick={onSignOut}>退出登录</Button>
+              </div>
+            </div>) : (
+            <div class={s.wrapper}>
+              <div class={s.logo}>
+                <GifIcon gifJson={LoadGif} class={s.icon} />
+                <h1 class={s.appName}>欢迎登录</h1>
+              </div>
+              <Form onSubmit={onSubmit}>
+                <FormItem label="邮箱地址" type="text"
+                  placeholder='请输入邮箱，然后点击发送验证码'
+                  v-model={formData.email} error={errors.email?.[0]} />
+                <FormItem ref={refValidationCode} label="验证码" type="validationCode"
+                  placeholder='请输入六位数字'
+                  countFrom={60}
+                  disabled={refDisabled.value}
+                  onClick={onClickSendValidationCode}
+                  v-model={formData.code} error={errors.code?.[0]} />
+                <FormItem style={{ paddingTop: '2.15vh' }}>
+                  <Button type="submit" class={s.loginBtn}>登 录</Button>
+                </FormItem>
+              </Form>
+            </div>
+          )
+          }
         }
-      </>
-    )
+      
+      </MainLayout>)
   }
+
 })
