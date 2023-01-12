@@ -42,6 +42,7 @@ export const Charts = defineComponent({
       }
       const diff = new Date(props.endDate).getTime() - new Date(props.startDate).getTime()
       const n = diff / DAY + 1
+      
       return Array.from({ length: n }).map((_, i) => {
         const time = new Time(props.startDate + 'T00:00:00.000+0800').add(i, 'day').getTimestamp()
         const item = data1.value[0]
@@ -64,10 +65,12 @@ export const Charts = defineComponent({
           _autoLoading: true
         }
       )
+
       data1.value = response.data.groups
+      console.log(data1.value);
     }
     onMounted(fetchData1)
-    watch(() => kind.value, fetchData1)
+    watch(() =>[props.startDate, props.endDate,kind.value] , fetchData1)
 
     const data2 = ref<Data2>([])
     const betterData2 = computed<{ name: string; value: number }[]>(() =>
@@ -101,13 +104,19 @@ export const Charts = defineComponent({
       data2.value = response.data.groups
     }
     onMounted(fetchData2)
-    watch(() => kind.value, fetchData2)
+    watch(() => [props.startDate, props.endDate,kind.value], fetchData2)
     return () => (
       <div class={s.wrapper}>
-        <FormItem label='类型' type="select" options={[
-          { value: 'expenses', text: '支出' },
-          { value: 'income', text: '收入' }
-        ]} v-model={kind.value} class={s.chartSelect} />
+        <FormItem 
+          label="类型"
+          type="select"
+          options={[
+            { value: 'expenses', text: '支出' },
+            { value: 'income', text: '收入' }
+          ]}
+        v-model={kind.value} 
+        class={s.chartSelect} 
+        />
         <LineChart data={betterData1.value} />
         <PieChart data={betterData2.value} />
         <Bars data={betterData3.value} />

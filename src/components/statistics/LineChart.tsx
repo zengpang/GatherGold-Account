@@ -39,10 +39,11 @@ const echartsOption = {
     },
   },
 }
+
 export const LineChart = defineComponent({
-  props:{
-    data:{
-      type:Array as PropType<[string,number][]>,
+  props: {
+    data: {
+      type: Array as PropType<[string, number][]>,
       required: true,
     },
   },
@@ -80,5 +81,5 @@ export const LineChart = defineComponent({
       }
     )
     return () => <div ref={refDiv} class={s.wrapper}></div>
-  }
+  },
 })

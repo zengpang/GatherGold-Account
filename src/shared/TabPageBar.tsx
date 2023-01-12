@@ -33,10 +33,10 @@ export const TabPageBar = defineComponent({
             const BtnWidth='width:'+(19.5)*(BtnScale)+"vw";
             const BtnMarginLeft='margin-left:'+(0.5)*BtnScale+"vw";
             const BtnNewStyle=BtnWidth+';'+BtnMarginLeft;
-            return <><div class={s.tabPageBar}>
+            return <><div class={s.tabPageBar} key={props.selected}>
                 {tabs.map(item =>
                     //在点击事件中更新父组件
-                    <TabButton buttonStyle={BtnNewStyle} class={[s.tabButton,item.props?.name===props.selected?s.selected:'']} onClick={()=>context.emit('update:selected', item.props?.name)}>{item.props?.name}</TabButton>
+                    <button style={BtnNewStyle} class={[s.tabButton,item.props?.name===props.selected?s.selected:'']} onClick={()=>context.emit('update:selected', item.props?.value)}>{item.props?.name}</button>
                 )}
             </div>
                 <div class={s.tabPageContainer}>
@@ -59,6 +59,7 @@ export const TabButton = defineComponent({
             defualt:''
         }
     },
+    
     // "width: 39vw;margin-left: 0.9vw;"
     setup: (props, context) => {
         return () => (
@@ -73,8 +74,11 @@ export const TabPage = defineComponent({
     props: {
         name: {
             type: String as PropType<string>
+        },
+        value: {
+          type: String as PropType<string>,
+          required: true
         }
-
     },
     setup: (props, context) => {
         console.log(props.name);
