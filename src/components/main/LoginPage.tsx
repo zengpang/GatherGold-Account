@@ -34,7 +34,19 @@ export const LoginPage = defineComponent({
     onMounted(async () => {
 
       const response = await meStore.mePromise;
-      me.value = response?.data.resource
+      me.value = response?.data.resource;
+      const userEmail=localStorage.getItem('userEmail');
+      const userId=Number(localStorage.getItem('userId'));
+      if(userEmail&&userId&&!me.value)
+      {
+        console.log("启用缓存");
+        me.value={id:userId,email:userEmail};
+      }
+      else if(me.value)
+      {
+        localStorage.setItem('userId',me.value!.id.toString());
+        localStorage.setItem('userEmail',me.value!.email);
+      }
     })
     const onSignOut = async () => {
       await Dialog.confirm({
@@ -42,6 +54,8 @@ export const LoginPage = defineComponent({
         message: '你真的要退出登录吗？',
       })
       localStorage.removeItem('jwt');
+      localStorage.removeItem('userId');
+      localStorage.removeItem('userEmail');
       window.location.reload();
     }
 
@@ -58,8 +72,9 @@ export const LoginPage = defineComponent({
       if (!hasError(errors)) {
         const response = await http.post<{ jwt: string }>('/session', formData)
           .catch(onError)
-        console.log(response)
-        localStorage.setItem('jwt', response.data.jwt)
+        console.log(me.value)
+        localStorage.setItem('jwt', response.data.jwt);
+       
         // router.push('/sign_in?return_to='+ encodeURIComponent(route.fullPath))
         const returnTo = route.query.return_to?.toString()
         refreshMe()
