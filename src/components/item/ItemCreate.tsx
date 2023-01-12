@@ -53,12 +53,12 @@ export const ItemCreate = defineComponent({
           default: () => (
             <div class={s.wrapper}>
               <TabPageBar v-model:selected={refKind.value}>
-                <TabPage name='支出' class={s.tabPage} >
+                <TabPage  name='支出' class={s.tabPage} >
                   <a class={s.itemTitle}>支出标签</a>
                   <ItemList  kind={kind.value}  ItemType='tag' Items={tags.value} hasMore={hasMore.value} page={page.value} fetchTags={fetchTags}  class={s.itemList}></ItemList>
                   <RouterLink to={'/tags/create?kind=expenses'} class={s.addTag} ><Button class={s.addTagBtn}>添 加 标 签</Button></RouterLink>
                 </TabPage>
-                <TabPage name='收入' class={s.tabPage}>
+                <TabPage  name='收入' class={s.tabPage}>
                   <a class={s.itemTitle}>收入标签</a>
                   <ItemList  kind={kind.value} ItemType='tag' Items={tags.value} hasMore={hasMore.value} page={page.value} fetchTags={fetchTags}    class={s.itemList}></ItemList>
                   <RouterLink to={`/tags/create?kind=income`} class={s.addTag} ><Button class={s.addTagBtn}>添 加 标 签</Button></RouterLink>
