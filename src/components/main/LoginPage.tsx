@@ -41,7 +41,8 @@ export const LoginPage = defineComponent({
         title: '确认',
         message: '你真的要退出登录吗？',
       })
-      localStorage.removeItem('jwt')
+      localStorage.removeItem('jwt');
+      window.location.reload();
     }
 
     const onSubmit = async (e: Event) => {
