@@ -6,6 +6,7 @@ declare module "*.vue" {
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
+declare var DEBUG: boolean;
 
 type JSONValue =
   | null
@@ -20,21 +21,21 @@ type Tag = {
   user_id: number;
   name: string;
   sign: string;
-  kind: 'expenses' | 'income';
+  kind: "expenses" | "income";
 };
 type Item = {
   id: number;
   user_id: number;
   amount: number;
   tag_ids: number[];
-  tags?:Tag[];
+  tags?: Tag[];
   happen_at: string;
-  kind: 'expenses' | 'income';
+  kind: "expenses" | "income";
 };
-type User={
-  id:number;
-  email:string;
-}
+type User = {
+  id: number;
+  email: string;
+};
 type Resources<T = any> = {
   resources: T[];
   pager: {
@@ -51,5 +52,4 @@ type Resource<T> = {
 type ResourceError = {
   errors: Record<string, string[]>;
 };
-type FormErrors<T>={[k in keyof typeof T]:string[]}
-
+type FormErrors<T> = { [k in keyof typeof T]: string[] };
