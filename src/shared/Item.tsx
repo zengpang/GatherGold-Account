@@ -1,6 +1,7 @@
 import s from './Item.module.scss';
 import { defineComponent, PropType } from 'vue';
 import { Money } from './Money';
+import { Datetime } from './Datetime';
 
 export const Item = defineComponent({
     props: {
@@ -33,9 +34,7 @@ export const Item = defineComponent({
                 <div class={s.text}>
                     <div class={s.tagAndTime}>
                         <span class={s.tag}>{props.tagName}</span>
-                        <span class={s.time}>
-                           {props.tagTime}
-                         </span>
+                        <Datetime class={s.time} value={props.tagTime} />
                         
                     </div>
                     <div class={s.price}>
