@@ -1,0 +1,40 @@
+//全局变量
+:root{
+    --welcome-card-bg: white;
+    --welcome-text: rgba(0, 0, 0, 1);
+    --welcome-btn-text: white;
+    --kingsoft-font:"KingsoftCloud";
+    --black-font:SimHei;
+    --bolder-font:700;
+    // font-family: SimHei;
+    // font-weight: 700;
+    --shallow-gray-color:#FDFAFE;
+    --hint-font-color:#808080;
+    --btn-unSelected-color:#D5D8DE;
+    --normal-font-color:white;
+    --border-radius:10px;
+    --mini-font-size:12px;
+    --small-font-size:16px;
+    --normal-font-size:18px;
+    --big-font-size:24px;
+    --bigger-font-size:30px;
+    --animTime: .3s;
+    --btn-bgColor-start:rgba(255, 130, 130, 1);
+    --btn-bgColor-end:rgba(255, 97, 97, 1);
+    --page-bgColor-start:rgba(248, 206, 155, 1);
+    --page-bgColor-end:rgba(254, 166, 65, 1);
+    --btn-radius:50px;
+    --black-shadow:  0px 0px 2.2px rgba(0, 0, 0, 0.02),
+    0px 0px 5.4px rgba(0, 0, 0, 0.028),
+    0px 0px 10.1px rgba(0, 0, 0, 0.035),
+    0px 0px 18.1px rgba(0, 0, 0, 0.042),
+    0px 0px 33.8px rgba(0, 0, 0, 0.05),
+    0px 0px 81px rgba(0, 0, 0, 0.07);
+    --bottom-margin-distance:2vw;
+    --item-interval-length:29.31vw;
+    
+}
+@font-face{
+    font-family: 'KingsoftCloud';
+    src:url('/fonts/KingsoftCloudFont.ttf');
+}

@@ -1,0 +1,24 @@
+.navbar{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: fixed;
+    margin-top: 5.8vh;
+    margin-bottom: 2.4vh;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--black-font);
+    z-index: 10;
+    font-weight: bolder;
+    >.icon{
+      font-size: calc(var(--big-font-size)/1.1) ;
+      position: absolute;
+      left: 26px;
+     
+    }
+    >.title{
+      font-size: var(--big-font-size);
+     
+    }
+  
+}

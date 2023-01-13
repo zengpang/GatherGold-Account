@@ -1,0 +1,38 @@
+@font-face {
+    font-family: "iconfont";
+    /* Project id 3828561 */
+    src: url('../assets/icons/TextIcons/iconfont.woff2?t=1671197779939') format('woff2'),
+        url('../assets/icons/TextIcons/iconfont.woff?t=1671197779939') format('woff'),
+        url('../assets/icons/TextIcons/iconfont.ttf?t=1671197779939') format('truetype');
+}
+
+.TextIcon {
+    font-family: "iconfont";
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: all var(--animTime);
+   
+    &.home:before {
+        content: "\e639";
+    }
+    &.chart:before {
+        content: "\e603";
+    }
+    &.user:before {
+        content: "\e8c8";
+    }
+    &.add:before {
+        content: "\e622";
+    }
+    &.export:before {
+        content: "\e602";
+    }
+    &.exit:before {
+        content: "\e6b6";
+    }
+    &.date::before{
+        content: "\e600";
+    }
+}

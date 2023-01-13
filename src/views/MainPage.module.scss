@@ -1,0 +1,11 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .container {
+        height: 87.3vh;
+        width: 100vw;
+        overflow-y: hidden;
+        
+    }
+}

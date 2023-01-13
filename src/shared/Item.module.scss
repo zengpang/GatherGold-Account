@@ -1,0 +1,59 @@
+.item {
+    display: flex;
+    flex-direction: row;
+    
+    .sign {
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: 6.3vh;
+        height: 6.3vh;
+        background: linear-gradient(226.47deg, rgba(255, 97, 97, 1) 0%, rgba(255, 129, 130, 1) 100%);
+        box-shadow: 0px 8px 12px 0px rgba(255, 97, 97, 0.5);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 8px;
+    }
+
+    .text {
+        margin-right: 4px;
+        margin-left: 4px;
+        flex-grow: 1;
+        flex-shrink: 1;
+        display: flex;
+        
+        justify-content: space-between;
+        .tagAndTime {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 25.35vw;
+            .tag {
+                color: black;
+            }
+            .time{
+                width: auto;
+            }
+          
+        }
+
+        .price {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            justify-content: center;
+            align-items: center;
+            .amount {
+                color: var(--btn-bgColor-end);
+                display: flex;
+                flex-direction: row;
+               
+                &.income{
+         
+                    color: var(--page-bgColor-end);
+                }
+            }
+        }
+    }
+}

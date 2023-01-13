@@ -1,0 +1,55 @@
+.tagForm
+{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  margin-top: 12.08vh;
+  height: 80vh;
+  overflow: auto;
+
+.tips{
+    text-align: center;
+    margin: 0;
+  }
+  
+
+  .buttondiv{
+    width: 61.4vw;
+    height: 6.8vh;
+    align-self: center;
+    .button{
+      
+      margin-left: 10px;
+      border-radius: 15px;
+      font-size: var(--mini-font-size);
+      background: linear-gradient(135deg, var(--btn-bgColor-end) 0%, var(--btn-bgColor-start) 100%);
+      box-shadow: 0px 8px 12px 0px rgba(255, 97, 97, 0.5);
+      width: 76.33vw;
+      &.hiddenBtn{
+        display: none;
+      }
+    }
+  }
+  
+}
+// .actions{
+  
+//   display: flex;
+//   width: 100vw;
+//   align-items: center;
+//   justify-content: center;
+ 
+ 
+// }
+// .removeTagsAndItems
+// {
+//   width: 41.4vw;
+//   height: 6.8vh;
+//   align-self: center;   
+//   border-radius: 15px;
+//   font-size: var(--mini-font-size);
+//   background: linear-gradient(135deg, var(--btn-bgColor-end) 0%, var(--btn-bgColor-start) 100%);
+//   box-shadow: 0px 8px 12px 0px rgba(255, 97, 97, 0.5);
+//   position: fixed;
+
+// }

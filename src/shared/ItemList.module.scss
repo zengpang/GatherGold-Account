@@ -1,0 +1,28 @@
+.wrapper
+{
+  width: 100%;
+  
+  display: flex;
+  flex-direction: column;
+ 
+  .item{
+    margin-top: 2.76vh;
+    // margin-top: 2.80vh;
+    
+  } 
+  .footer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2.89vh;
+   // margin-top: 2.93vh;
+    color: var( --btn-unSelected-color);
+    
+  } 
+  .loadMove{
+    
+   color: var(--page-bgColor-end);
+
+  }
+}
