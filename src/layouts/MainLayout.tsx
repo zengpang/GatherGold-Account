@@ -15,13 +15,17 @@ export const MainLayout = defineComponent({
             type: String as PropType<string>,
            
         },
+        isScallPage:{
+            type: Boolean as PropType<boolean>,
+            default: false
+        }
         
     },  
-
+   // "overflow-y:auto"
     setup: (props, context) => {
         return () => (
-            <div>
-                <NavBar>{
+            <div style={props.isScallPage?"overflow-y:auto":""}>
+                <NavBar style={props.isScallPage?" position: relative;":""}>{
                     {
                         title: () => context.slots.title?.(),
                         icon: () => (

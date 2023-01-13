@@ -100,7 +100,7 @@ export const LoginPage = defineComponent({
       refValidationCode.value.startCount();
     }
     return () => (
-      <MainLayout iconShow={false}>{
+      <MainLayout iconShow={false} isScallPage={true}>{
         {
           title: () => me.value ? '个人中心' : '登录',
 

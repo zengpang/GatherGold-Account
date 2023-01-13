@@ -1,4 +1,4 @@
-
+  
   .wrapper{
     margin-top: 5.98vh;
     width: 100vw;
@@ -9,7 +9,7 @@
       justify-content: center;
       >.email{
         font-size: var(--normal-font-size);
-        margin-top: 27px;
+        margin-top: 0px;
       }
       >.welcome{
         font-size: var(--small-font-size);
@@ -67,6 +67,7 @@
   }
   .loginBtn{
       width:90.58vw ; 
+      min-height: 48px;
       height: 5.868vh;
       border-radius: 5px;
       font-size: 14px;

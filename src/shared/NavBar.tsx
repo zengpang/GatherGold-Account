@@ -1,7 +1,12 @@
-import { defineComponent } from "vue";
+import { defineComponent,PropType } from "vue";
 import s from './NavBar.module.scss'
 export const NavBar=defineComponent({
-    
+    props:{
+       name:{
+        type: String as PropType<string>,
+        required: false
+       }
+    },
     setup:(props,context)=>{
         const{slots}=context;
         
