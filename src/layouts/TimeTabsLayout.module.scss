@@ -55,8 +55,10 @@
     text-align: right;
     display: flex;
     justify-content: space-between;
+  
     button {
         width: 25.44vw;
+        min-height: 32px;
         height: 3.87vh;
         padding: 8px 16px;
         border-radius: 5px;
