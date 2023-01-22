@@ -4,16 +4,18 @@ import { App } from './App.js'
 import { createRouter } from 'vue-router';
 import { history } from './shared/history';
 
-import { fetchMe, mePromise } from './shared/me';
-import { createPinia } from 'pinia';
+import { createPinia,storeToRefs } from 'pinia';
+import { useMeStore } from './stores/useMeStore';
 const router = createRouter({ history, routes });
 const pinia=createPinia();
 const app = createApp(App);
 app.use(router);
 app.use(pinia);
 app.mount('#app');
+const meStore = useMeStore()
+const { mePromise } = storeToRefs(meStore)
+meStore.fetchMe()
 
-fetchMe();
 //路径白名单（键值对）
 const whiteList: Record<string, 'exact' | 'startsWith'> = {
     '/': 'exact',
@@ -35,7 +37,7 @@ router.beforeEach((to, from) => {
         return true
       }
     }
-    return mePromise!.then(
+    return mePromise!.value!.then(
         ()=>true,
         () => '/main/login?return_to=' + to.path
     )
