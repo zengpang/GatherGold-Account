@@ -59,6 +59,7 @@ http.instance.interceptors.response.use((response) => {
     }
     throw error;
   })
+  //判断当前运行模式，如果是Debug则加载mock，否则不加载
   if (DEBUG) {
     import('../mock/mock').then(
       ({

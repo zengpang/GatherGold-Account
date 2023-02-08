@@ -6,6 +6,7 @@ import vueJsx from "@vitejs/plugin-vue-jsx";
 export default defineConfig(({ command }) => {
   return {
     define:
+      //通过command的值，判断当前运行指令是否build，如果不是则为DEBUG模式
       command === "build"
         ? {
             DEBUG: false,
@@ -16,6 +17,7 @@ export default defineConfig(({ command }) => {
     build:{
       rollupOptions:{
         output:{
+          //分包配置
           manualChunks(id:any){
             if(id.includes('echarts')){
               return 'echarts';
