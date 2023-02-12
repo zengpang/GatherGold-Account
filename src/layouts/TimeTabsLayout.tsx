@@ -35,6 +35,10 @@ export const TimeTabsLayout = defineComponent({
         hideThisYear: {
             type: Boolean,
             default: false
+        },
+        pageTitle:{
+            type:String as PropType<String>,
+            default:'首页'
         }
     },
     setup: (props, context) => {
@@ -79,7 +83,7 @@ export const TimeTabsLayout = defineComponent({
             <MainLayout iconShow={false}>
                 {
                     {
-                        title: () => '首页',
+                        title: () => props.pageTitle,
                         default: () => (
                             <div class={s.timeTabsLayout}>
                                 {props.hideThisYear ? (<TabPageBar v-model:selected={refSelected.value} onUpdate:selected={onSelect}>
