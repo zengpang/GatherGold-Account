@@ -19,8 +19,8 @@ export const LoginPage = defineComponent({
   setup: (props, context) => {
     const meStore = useMeStore();
     const formData = reactive({
-      email: '',
-      code: ''
+      email: '2516629927@qq.com',
+      code: '123456'
     })
     const errors = reactive({
       email: [],
@@ -61,6 +61,7 @@ export const LoginPage = defineComponent({
 
     const onSubmit = async (e: Event) => {
       e.preventDefault()
+      
       Object.assign(errors, {
         email: [], code: []
       })
@@ -126,10 +127,10 @@ export const LoginPage = defineComponent({
               </div>
               <Form onSubmit={onSubmit}>
                 <FormItem label="邮箱地址" type="text"
-                  placeholder='请输入邮箱，然后点击发送验证码'
+                  placeholder='请输入邮箱，然后点击发送验证码'   
                   v-model={formData.email} error={errors.email?.[0]} />
                 <FormItem ref={refValidationCode} label="验证码" type="validationCode"
-                  placeholder='请输入六位数字'
+                  placeholder='请输入六位数字' 
                   countFrom={60}
                   disabled={refDisabled.value}
                   onClick={onClickSendValidationCode}

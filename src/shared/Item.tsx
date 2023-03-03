@@ -21,12 +21,15 @@ export const Item = defineComponent({
         tagPrice: {
             type: Number as PropType<number>,
             required: true
+        },
+        tagKind:{
+            type: String as PropType<string>,
+            required: true
         }
-
     },
     setup: (props, context) => {
         return () => {
-            const isincome=props.tagPrice>0;
+            const isincome=(props.tagKind !== "expenses");
             return <div class={s.item }  >
                 <div class={s.sign}>
                     <span>{props.tagIcon}</span>

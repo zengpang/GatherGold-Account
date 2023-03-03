@@ -87,7 +87,7 @@ export const ItemList = defineComponent({
 
           return <div class={s.wrapper}>
             {Items!.map((item, index) => {
-              return (<Item tagIcon={item.tags![0].sign} tagName={item.tags![0].name} tagPrice={item.amount} tagTime={item.happen_at} class={s.item}></Item>)
+              return (<Item tagKind={item.kind} tagIcon={item.tags![0].sign} tagName={item.tags![0].name}  tagPrice={item.amount} tagTime={item.happen_at} class={s.item}></Item>)
             })}
             <div>
               {

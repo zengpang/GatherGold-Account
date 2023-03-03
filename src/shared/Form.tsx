@@ -29,6 +29,7 @@ export const FormItem = defineComponent({
             type: String,
             default: '4px'
         },
+      
         modelValue: {
             type: [String, Number]
         },
@@ -54,6 +55,7 @@ export const FormItem = defineComponent({
         const timer = ref<number>();
         const count = ref<number>(props.countFrom);
         const isCounting = computed(() => !!timer.value);
+       
         const startCount = () => {
             timer.value = setInterval(() => {
                 count.value -= 1;
